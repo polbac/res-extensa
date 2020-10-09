@@ -47,8 +47,9 @@ class Landing {
     animate() {
         
         if (this.res) {
-            
+            this.res.position.x -= 0.001 
         }
+
         this.camera.updateProjectionMatrix();
         requestAnimationFrame(this.animate.bind(this));
         this.renderer.render( this.scene, this.camera );

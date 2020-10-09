@@ -14,7 +14,12 @@ module.exports = {
       {
         test: /\.s?css$/,
         use: ["style-loader", "css-loader"]
-      }
+      },
+      {
+        test: /\.less$/,
+        loader: 'less-loader', // compiles Less to CSS
+      },
+      { test: /\.hbs$/, loader: "handlebars-loader" }
     ]
   },
   resolve: { extensions: ["*", ".js", ".jsx"] },
@@ -27,5 +32,8 @@ module.exports = {
     contentBase: path.join(__dirname, "public/"),
     port: 3000,
     publicPath: "http://localhost:3000/dist/",
+    historyApiFallback: {
+      index: 'index.html'
+    }
   },
 }
