@@ -1,8 +1,11 @@
 import * as THREE from 'three';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 
-class Landing {
-    constructor(){}
+import $ from 'jquery'
+export class Landing {
+    constructor(){
+        this.show() 
+    }
     show() {
         this.renderer = new THREE.WebGLRenderer({ alpha: true });
         this.renderer.setSize( window.innerWidth, window.innerHeight );
@@ -17,10 +20,7 @@ class Landing {
         this.loader.load( 'res-extensa.obj', (object) => {
             object.traverse(function (child) {
                 var diffuseColor = new THREE.Color().setRGB(1,1,1);
-                child.material = new THREE.MeshPhysicalMaterial({
-                    color: diffuseColor,
-					metalness: 0,
-                });
+                child.material = new THREE.MeshNormalMaterial();
                 child.position.y = -0.25
                 child.rotation.y = 0.2
 
@@ -51,13 +51,18 @@ class Landing {
         }
 
         this.camera.updateProjectionMatrix();
-        requestAnimationFrame(this.animate.bind(this));
+        this.idAnimationFrame = requestAnimationFrame(this.animate.bind(this));
         this.renderer.render( this.scene, this.camera );
      
     }
+
+    destroy() {
+        cancelAnimationFrame(this.idAnimationFrame)
+        this.renderer.renderLists.dispose()
+        $("canvas").remove()
+        this.scene = null
+        this.camera = null
+        this.renderer = null
+        
+    }
 }
-
-
-
-const landing = new Landing()
-export default landing
