@@ -4,8 +4,8 @@ import { Chronological } from './pages/chronological'
 import { Extracts } from './pages/extracts'
 import { Landing } from './pages/landing'
 import { About } from './pages/about'
+import { createNavigation } from './components/nav/nav'
 
-import { createNavigation } from './components/nav'
 require('./styles/main.css')
 
 const router = new Navigo('http://localhost:3000/', false);

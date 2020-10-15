@@ -1,43 +1,54 @@
 import * as THREE from 'three';
 import { arrayDivider } from '../utils/array'
 import list from '../mock/random'
+import { SpaceGroup } from '../components/space/group'
+import { loadAssets } from '../components/space/assets-loader'
+import { Base } from './base'
 
-export class Random {
+export class Random extends Base{
     constructor(){
+        super('random')
         this.show() 
     }
 
     show() {
-        const areas =  arrayDivider(list)
-        console.log(areas)
+        const areas =  arrayDivider(list, 2)
         this.renderer = new THREE.WebGLRenderer({ alpha: true });
         this.renderer.setSize( window.innerWidth, window.innerHeight );
         this.camera = new THREE.PerspectiveCamera( 100, window.innerWidth / window.innerHeight, 0.01, 10 );
         this.scene = new THREE.Scene();
 
-        this.light = new THREE.PointLight( 0xffffff, 1, 100 );
         this.ambient = new THREE.AmbientLight( 0xffffff );
         
         this.counter = 0
 
         document.body.appendChild( this.renderer.domElement );
-        this.animate.bind(this)()
-        this.scene.add( this.light );
-        //this.scene.add( this.ambient );
+        
 
-        console.log(data)
+        loadAssets().then(() => {
+            this.groups = [
+                new SpaceGroup(areas[0], this.scene),
+            ]
+            this.groups[0].build()
+            this.animate.bind(this)()
+        })
+        
+        
+
+        
     }
 
     animate() {
-        
-        if (this.res) {
-            this.res.position.x -= 0.001 
+        if (this.groups){
+            this.groups.forEach(group => {
+                group.render()
+            })
         }
 
         this.camera.updateProjectionMatrix();
         this.idAnimationFrame = requestAnimationFrame(this.animate.bind(this));
         this.renderer.render( this.scene, this.camera );
-     
+        
     }
 
     destroy() {
