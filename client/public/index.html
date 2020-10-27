@@ -1,13 +1,26 @@
 <html>
 <title>RES EXTENSA</title>
+<style>
+  @font-face {
+    font-family: 'Favorit Pro Light';
+    src: url('FavoritProLight.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Galapagos';
+    src: url('GalapagosACLight.woff') format('woff');
+  }
+</style>
 <body>
 <main id="root">
   <nav>
-    <a href="/">Landing</a>
-    <a href="/random">Random</a>
-    <a href="/chronological">Chronological</a>
-    <a href="/about">About</a>
-    <a href="/extracts">Extracts</a>
+    <a class="sitetitle" href="/"><g>R</g>e<g>s</g>E<g>x</g>te<g></g>nsa</a>
+    <div id="menu">
+      <a id="random-button" href="/random"><img src="random.svg"/></a>
+      <a id="chrono-button" href="/chronological"><img src="chronological.svg"/></a>
+      <a id="extracts-button" href="/extracts"><img src="extracts.svg"/></a>
+      <a id="search-button" href=""><img src="search.svg"/></a>
+      <a id="about-button" href="/about"><img src="about.svg"/></a>
+    </div>
   </nav>
   <section id="section"></section>  
 </main>
@@ -18,7 +31,7 @@
 
 <style>
   html,body {
-    background: black;
+    background: #f2f2f2;
     margin: 0;
     padding: 0;
     overflow: hidden;
