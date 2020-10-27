@@ -1,26 +1,24 @@
-import { TextItem, TEXT_ITEM_TYPE } from './text'
+import { ItemFactory } from './item'
+import { create2Darray } from '../../utils/array'
 import * as THREE from 'three';
+
+const COORDINATE_VELOCITY = .01
+const OBJ_Z = -100
 
 export class SpaceGroup {
     constructor(data, scene) {
-        this.SIZE = [50, 50];
+        this.SIZE = [40, 40];
         this.data = data;
         this.scene = scene;
-        this.types = {
-            [TEXT_ITEM_TYPE]: TextItem,
-        };
-        this.items = []
+        this.matrix = create2Darray(this.data)
+        this.items = [];
         this.group = new THREE.Group();
     }
 
     build() {
-        this.items = this.data.map(item => {
-            if (this.types[item.type]) {
-                const a = new this.types[item.type](item);
-                a.build()
-                return a;
-            }
-        })
+      this.matrix = this.matrix.map(row => 
+        row.map(item => new ItemFactory(item))
+      );
 
         let x = 0
         
@@ -33,11 +31,20 @@ export class SpaceGroup {
         });
 
         this.scene.add(this.group)
+        this.group.position.z = -30
         
     }
 
+    move(coor) {
+        this.group.position.x += coor.x * COORDINATE_VELOCITY
+        this.group.position.y -= coor.y * COORDINATE_VELOCITY
+    }
+
     render() {
-        this.group.position.x -= 0.1 
-        
+        this.items.forEach(element => {
+            if(element) {    
+              element.render()
+            }
+          });
     }
 }
