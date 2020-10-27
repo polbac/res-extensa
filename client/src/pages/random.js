@@ -4,7 +4,8 @@ import list from '../mock/random'
 import { SpaceGroup } from '../components/space/group'
 import { loadAssets } from '../components/space/assets-loader'
 import { Base } from './base'
-
+import { UserControl, MOVE } from '../components/space/user-control'
+        
 export class Random extends Base{
     constructor(){
         super('random')
@@ -12,10 +13,11 @@ export class Random extends Base{
     }
 
     show() {
-        const areas =  arrayDivider(list, 2)
+        this.userControl = new UserControl()
+        const areas =  arrayDivider(list, 1)
         this.renderer = new THREE.WebGLRenderer({ alpha: true });
         this.renderer.setSize( window.innerWidth, window.innerHeight );
-        this.camera = new THREE.PerspectiveCamera( 100, window.innerWidth / window.innerHeight, 0.01, 10 );
+        this.camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 1000 );
         this.scene = new THREE.Scene();
 
         this.ambient = new THREE.AmbientLight( 0xffffff );
@@ -23,7 +25,6 @@ export class Random extends Base{
         this.counter = 0
 
         document.body.appendChild( this.renderer.domElement );
-        
 
         loadAssets().then(() => {
             this.groups = [
@@ -31,10 +32,8 @@ export class Random extends Base{
             ]
             this.groups[0].build()
             this.animate.bind(this)()
+            global.eventEmitter.on(MOVE, (coor) => this.groups[0].move(coor))
         })
-        
-        
-
         
     }
 

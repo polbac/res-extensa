@@ -6,6 +6,9 @@ import { Landing } from './pages/landing'
 import { About } from './pages/about'
 import { createNavigation } from './components/nav/nav'
 
+const EventEmitter = require('events')
+global.eventEmitter = new EventEmitter()
+
 require('./styles/main.css')
 
 const router = new Navigo('http://localhost:3000/', false);

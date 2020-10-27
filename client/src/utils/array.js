@@ -22,3 +22,15 @@ export function arrayDivider(array, number) {
 
     return newArray
 }
+
+export function create2Darray(A) {
+    const arr = [];
+    const rows = Math.floor(Math.sqrt(A.length));
+    for (let i = 0; i < rows; i++) {
+      arr[i] = [];
+      for (let j = 0; j < rows; j++) {
+        arr[i][j] = A[i * rows + j];
+      }
+    }
+    return arr;
+  }
