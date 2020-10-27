@@ -1,7 +1,86 @@
-nav a{
-    color: blue;
+nav {
+    font-family: 'Favorit Pro Light';
+    font-size: 3.1vw;
+    text-transform: uppercase;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 98vw;
+    height: 5.25vw;
+    border-bottom: 1px solid black;
+    padding: .25vw 1vw 0 1vw;
 }
 
-nav{
-    border-radius: 10px;
+nav a { 
+    color: black;
+    text-decoration: none;
+}
+
+nav .sitetitle {
+    position: absolute; 
+}
+
+g {
+    font-family: 'Galapagos';
+}
+
+nav #menu { 
+    float: right;
+    text-align: right;
+}
+
+nav #menu a { 
+    margin-left: 2.8vw;
+}
+
+nav #menu a img { 
+    width: 2.6vw;
+    position: relative;
+    top: .25vw;
+    pointer-events: none !important;
+}
+
+nav #menu a#random-button:hover img{
+    display: none;
+}
+
+nav #menu a#random-button:hover:after {
+    content: "RANDOM";
+    display: inline;
+}
+
+nav #menu a#chrono-button:hover img{
+    display: none;
+}
+
+nav #menu a#chrono-button:hover:after {
+    content: "CHRONOLOGICAL";
+    display: inline;
+}
+
+nav #menu a#about-button:hover img{
+    display: none;
+}
+
+nav #menu a#about-button:hover:after {
+    content: "ABOUT";
+    display: inline;
+}
+
+nav #menu a#extracts-button:hover img{
+    display: none;
+}
+
+nav #menu a#extracts-button:hover:after {
+    content: "EXTRACTS";
+    display: inline;
+}
+
+nav #menu a#search-button:hover img{
+    display: none;
+}
+
+nav #menu a#search-button:hover:after {
+    content: "SEARCH";
+    display: inline;
 }
