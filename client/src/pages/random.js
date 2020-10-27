@@ -25,13 +25,13 @@ export class Random extends Base{
         this.counter = 0
 
         document.body.appendChild( this.renderer.domElement );
-
         loadAssets().then(() => {
             this.groups = [
                 new SpaceGroup(areas[0], this.scene),
             ]
             this.groups[0].build()
             this.animate.bind(this)()
+            
             global.eventEmitter.on(MOVE, (coor) => this.groups[0].move(coor))
         })
         
@@ -47,7 +47,6 @@ export class Random extends Base{
         this.camera.updateProjectionMatrix();
         this.idAnimationFrame = requestAnimationFrame(this.animate.bind(this));
         this.renderer.render( this.scene, this.camera );
-        
     }
 
     destroy() {
