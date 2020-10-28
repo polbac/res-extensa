@@ -1,5 +1,10 @@
 export default [
-    
+    /* {
+        type: 'model',
+        obj: 'objects/turkiye_lego.gltf',
+        mtl: 'objects/obj1.mtl',
+        slug: 'object-1'
+    }, */
     {
         type: 'text',
         title: `Texto 1`,

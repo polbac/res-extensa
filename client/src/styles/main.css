@@ -9,6 +9,7 @@ nav {
     height: 5.25vw;
     border-bottom: 1px solid black;
     padding: .25vw 1vw 0 1vw;
+    z-index: 999;
 }
 
 nav a { 

@@ -15,26 +15,26 @@ export class Random extends Base{
     show() {
         this.userControl = new UserControl()
         const areas =  arrayDivider(list, 1)
-        this.renderer = new THREE.WebGLRenderer({ alpha: true });
+        this.renderer = new THREE.WebGLRenderer({alpha: true });
+        
         this.renderer.setSize( window.innerWidth, window.innerHeight );
         this.camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 1000 );
         this.scene = new THREE.Scene();
-
         this.ambient = new THREE.AmbientLight( 0xffffff );
         
         this.counter = 0
 
         document.body.appendChild( this.renderer.domElement );
+
         loadAssets().then(() => {
             this.groups = [
                 new SpaceGroup(areas[0], this.scene),
             ]
+            
             this.groups[0].build()
             this.animate.bind(this)()
-            
             global.eventEmitter.on(MOVE, (coor) => this.groups[0].move(coor))
-        })
-        
+        })   
     }
 
     animate() {
@@ -43,10 +43,10 @@ export class Random extends Base{
                 group.render()
             })
         }
-
+        
         this.camera.updateProjectionMatrix();
         this.idAnimationFrame = requestAnimationFrame(this.animate.bind(this));
-        this.renderer.render( this.scene, this.camera );
+        this.renderer.render(this.scene, this.camera);
     }
 
     destroy() {

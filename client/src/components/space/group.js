@@ -6,6 +6,7 @@ const COORDINATE_VELOCITY = .01
 const OBJ_Z = -100
 
 export class SpaceGroup {
+
     constructor(data, scene) {
         this.SIZE = [40, 40];
         this.data = data;
@@ -16,23 +17,20 @@ export class SpaceGroup {
     }
 
     build() {
-      this.matrix = this.matrix.map(row => 
-        row.map(item => new ItemFactory(item))
-      );
+      let x = 0
 
-        let x = 0
-        
-        this.items.forEach(element => {
-          if(element) {    
-            element.getItem().position.x += x;
-            x += this.SIZE[0];
-            this.group.add(element.getItem())
-          }
-        });
+      this.matrix = this.matrix.map(row => {
+        return row.map(item => {
+          const itemFactory = new ItemFactory(item)
+          itemFactory.getItem().position.x += x;
+          x += this.SIZE[0];
+          this.group.add(itemFactory.getItem())
+          return itemFactory
+        })
+      })
 
-        this.scene.add(this.group)
-        this.group.position.z = -30
-        
+      this.scene.add(this.group)
+      this.group.position.z = -30
     }
 
     move(coor) {
@@ -41,10 +39,9 @@ export class SpaceGroup {
     }
 
     render() {
-        this.items.forEach(element => {
-            if(element) {    
-              element.render()
-            }
-          });
+      
+      this.matrix.forEach(row => {
+        row.forEach(item => item.render())
+      })
     }
 }
