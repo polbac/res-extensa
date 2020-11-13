@@ -12,6 +12,7 @@ export const HorizontalDirection = {
 
 export const MOVE = 'move'
 
+const OFFSET = 1
 export class UserControl {
     constructor() {
         this.lastX = 0
@@ -36,15 +37,17 @@ export class UserControl {
                 this.verticalDirection = VerticalDirection.BOTTOM
             }
 
-            this.lastX = x
-            this.lastY = y
-
             global.eventEmitter.emit(MOVE, { 
                 horizontalDirection: this.horizontalDirection,
                 verticalDirection: this.verticalDirection,
                 x: -x,
                 y: -y,
             })
+
+            
+
+            this.lastX = x
+            this.lastY = y
 
             return false;
         })

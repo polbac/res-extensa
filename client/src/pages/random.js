@@ -5,7 +5,8 @@ import { SpaceGroup } from '../components/space/group'
 import { loadAssets } from '../components/space/assets-loader'
 import { Base } from './base'
 import { UserControl, MOVE } from '../components/space/user-control'
-        
+import { VerticalDirection, HorizontalDirection } from '../components/space/user-control'
+
 export class Random extends Base{
     constructor(){
         super('random')
@@ -33,10 +34,21 @@ export class Random extends Base{
             
             this.groups[0].build()
             this.animate.bind(this)()
-            global.eventEmitter.on(MOVE, (coor) => this.groups[0].move(coor))
+            
+            global.eventEmitter.on(
+                MOVE,
+                this.move.bind(this)
+            )
         })   
     }
 
+    move(coor) {
+        this.groups.forEach(group => {
+            group.move(coor)
+        })
+    }
+
+    
     animate() {
         if (this.groups){
             this.groups.forEach(group => {
