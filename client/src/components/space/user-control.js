@@ -12,7 +12,7 @@ export const HorizontalDirection = {
 
 export const MOVE = 'move'
 
-const OFFSET = 1
+const OFFSET = 4
 export class UserControl {
     constructor() {
         this.lastX = 0
@@ -21,22 +21,22 @@ export class UserControl {
         this.horizontalDirection = null
 
         mouseWheel((x, y) => {
-            if (this.lastX > x) {
+            if (x > OFFSET) {
                 this.horizontalDirection = HorizontalDirection.LEFT
             }
 
-            if (this.lastX < x) {
+            if (x < -OFFSET) {
                 this.horizontalDirection = HorizontalDirection.RIGHT
             }
 
-            if (this.lastY > y) {
-                this.verticalDirection = VerticalDirection.TOP
-            }
-
-            if (this.lastY < y) {
+            if (y < -OFFSET) {
                 this.verticalDirection = VerticalDirection.BOTTOM
             }
 
+            if (y > OFFSET) {
+                this.verticalDirection = VerticalDirection.TOP
+            }
+            
             global.eventEmitter.emit(MOVE, { 
                 horizontalDirection: this.horizontalDirection,
                 verticalDirection: this.verticalDirection,

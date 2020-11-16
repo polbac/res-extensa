@@ -1,13 +1,16 @@
 import * as THREE from 'three';
+import{ ItemBase } from './item-base'
 
 import { getAssetsLoader } from './assets-loader'
 
 export const TEXT_ITEM_TYPE = 'text'
-
-export class TextItem {
+console.log('ItemBase',ItemBase)
+export class TextItem extends ItemBase{
     constructor(data, obj_z) {
+        super()
         this.data = data;    
         this.obj_z = obj_z;    
+        
     }
 
     build() {

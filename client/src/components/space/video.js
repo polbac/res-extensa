@@ -1,11 +1,14 @@
 import * as THREE from 'three';
 import $ from 'jquery'
 import { uuidv4 } from '../../utils/uuid'
+import{ ItemBase } from './item-base'
+
 export const VIDEO_ITEM_TYPE = 'video'
 const VIDEO_WIDTH = 20;
 
-export class VideoItem {
+export class VideoItem extends ItemBase{
     constructor(data, obj_z) {
+        super()
         this.data = data; 
         this.obj_z = obj_z;       
     }

@@ -24,7 +24,7 @@ Architecture after the Era of Art.`,
     },
     {
         type: 'text',
-        title: `Texto 1`,
+        title: `Texto 2`,
         body: `An interview with David Joselit,
 Architecture after the Era of Art.`,
         slug: 'text-1'
@@ -41,7 +41,7 @@ Architecture after the Era of Art.`,
     },
     {
         type: 'text',
-        title: `Texto 1`,
+        title: `Texto 3`,
         body: `An interview with David Joselit,
 Architecture after the Era of Art.`,
         slug: 'text-1'
@@ -58,7 +58,7 @@ Architecture after the Era of Art.`,
     },
     {
         type: 'text',
-        title: `Texto 1`,
+        title: `Texto 4`,
         body: `An interview with David Joselit,
 Architecture after the Era of Art.`,
         slug: 'text-1'

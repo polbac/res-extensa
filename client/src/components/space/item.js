@@ -19,6 +19,6 @@ export class ItemFactory {
     }
 
     getItem() {
-        return this.item.getItem()
+        return this.item
     }
 }
