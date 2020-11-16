@@ -7,7 +7,6 @@ const COORDINATE_VELOCITY = .01
 const MAX_VALUE = 9999999999
 const MIN_VALUE = -9999999999
 export class SpaceGroup {
-
     constructor(data, scene) {
         this.SIZE = [45, 20];
         this.data = data;
@@ -17,14 +16,21 @@ export class SpaceGroup {
         this.group = new THREE.Group();
     }
 
+    getCanvasWidth() {
+      return this.SIZE[0]
+    }
+
+    getCanvasHeight() {
+      return this.SIZE[1]
+    }
 
     build() {
 
       this.matrix = this.matrix.map((row, x) => {
         return row.map((item, y) => {
           const itemFactory = new ItemFactory(item)
-          itemFactory.setX(x * this.SIZE[0]);
-          itemFactory.setY(-y * this.SIZE[1]);
+          itemFactory.setX(x * this.getCanvasWidth());
+          itemFactory.setY(-y * this.getCanvasHeight());
           this.group.add(itemFactory.getItem())
           this.items.push(itemFactory)
           return itemFactory
@@ -36,9 +42,20 @@ export class SpaceGroup {
     }
 
     checkEquals() {
-      console.log('****************')
       for (let i = 0; i < this.items.length; i++) {
-        console.log(this.items[i].getX(), this.items[i].getY(),)
+        const currentItem =  this.items[i]
+        let shouldMode = false
+        console.log(currentItem.getX(), currentItem.getY())
+        for (let j = 0; j < this.items.length; j++) {
+          
+          if (i !== j) {
+            
+            if (currentItem.getX() === this.items[j].getX() &&
+              currentItem.getY() === this.items[j].getY()) {
+                
+              }
+          }
+        }
       }
     }
 
@@ -70,7 +87,9 @@ export class SpaceGroup {
     getNextPosVertical(direction, item) {
       if (direction === VerticalDirection.TOP) {
         const nextPos = this.items
-          .filter(it => it.getX() === item.getX())
+        .filter(it => {
+          return Math.abs(it.getX() - item.getX()) < 1
+        })
           .reduce((prev, current) =>  {
             return current.getY() < prev ?
               current.getY() : 
@@ -79,11 +98,10 @@ export class SpaceGroup {
             MAX_VALUE)
         
         if (nextPos === MAX_VALUE) {
-          console.log(0)
-          return -this.SIZE[1]
+          return -this.getCanvasHeight()
         }
 
-        return nextPos - this.SIZE[1]
+        return nextPos - this.getCanvasHeight()
       } else if (direction === VerticalDirection.BOTTOM) {
         const nextPos = this.items
           .filter(it => {
@@ -101,7 +119,7 @@ export class SpaceGroup {
           return this.SIZE[1]
         }
 
-        return nextPos + this.SIZE[1]
+        return nextPos + this.getCanvasHeight()
       }
 
     }
@@ -120,13 +138,15 @@ export class SpaceGroup {
             MAX_VALUE)
         
         if (nextPos === MAX_VALUE) {
-          return -this.SIZE[0]
+          return -this.getCanvasWidth()
         }
 
         return nextPos - this.SIZE[0]
       } else if (direction === HorizontalDirection.LEFT) {
         const nextPos = this.items
-          .filter(it => it.getY() === item.getY())
+          .filter(it => {
+            return Math.abs(it.getY() - item.getY()) < 1
+          })
           .reduce((prev, current) =>  {
             return current.getX() > prev ?
               current.getX() : 

@@ -43,15 +43,14 @@ export class Random extends Base{
     }
 
     move(coor) {
-        this.groups.forEach(group => {
-            group.move(coor)
-        })
+        this.coor = coor
     }
 
     
     animate() {
         if (this.groups){
             this.groups.forEach(group => {
+                if (this.coor) group.move(this.coor)
                 group.render()
             })
         }
@@ -59,6 +58,7 @@ export class Random extends Base{
         this.camera.updateProjectionMatrix();
         this.idAnimationFrame = requestAnimationFrame(this.animate.bind(this));
         this.renderer.render(this.scene, this.camera);
+        
     }
 
     destroy() {
