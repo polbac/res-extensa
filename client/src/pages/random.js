@@ -29,10 +29,12 @@ export class Random extends Base{
 
         loadAssets().then(() => {
             this.groups = [
-                new SpaceGroup(areas[0], this.scene),
+                new SpaceGroup(areas[0], this.scene, 0),
+                new SpaceGroup(areas[0], this.scene, 1),
             ]
             
             this.groups[0].build()
+            this.groups[1].build()
             this.animate.bind(this)()
             
             global.eventEmitter.on(

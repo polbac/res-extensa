@@ -7,7 +7,8 @@ const COORDINATE_VELOCITY = .01
 const MAX_VALUE = 9999999999
 const MIN_VALUE = -9999999999
 export class SpaceGroup {
-    constructor(data, scene) {
+    constructor(data, scene, z) {
+        this.z = Number(z)
         this.SIZE = [45, 20];
         this.data = data;
         this.scene = scene;
@@ -17,10 +18,18 @@ export class SpaceGroup {
     }
 
     getCanvasWidth() {
+      if (this.z === 1) {
+        return this.SIZE[0] * 1.5
+      }
+      
       return this.SIZE[0]
     }
 
     getCanvasHeight() {
+      if (this.z === 1) {
+        return this.SIZE[1] * 1.5
+      }
+
       return this.SIZE[1]
     }
 
@@ -31,6 +40,7 @@ export class SpaceGroup {
           const itemFactory = new ItemFactory(item)
           itemFactory.setX(x * this.getCanvasWidth());
           itemFactory.setY(-y * this.getCanvasHeight());
+          //itemFactory.setZ(this.z * -10);
           this.group.add(itemFactory.getItem())
           this.items.push(itemFactory)
           return itemFactory
@@ -38,25 +48,12 @@ export class SpaceGroup {
       })
 
       this.scene.add(this.group)
-      this.group.position.z = -30
-    }
-
-    checkEquals() {
-      for (let i = 0; i < this.items.length; i++) {
-        const currentItem =  this.items[i]
-        let shouldMode = false
-        console.log(currentItem.getX(), currentItem.getY())
-        for (let j = 0; j < this.items.length; j++) {
-          
-          if (i !== j) {
-            
-            if (currentItem.getX() === this.items[j].getX() &&
-              currentItem.getY() === this.items[j].getY()) {
-                
-              }
-          }
-        }
+      if (this.z === 1) {
+        this.group.position.z = -40
+      } else {
+        this.group.position.z = -30
       }
+      
     }
 
     move(coor) {
@@ -72,16 +69,6 @@ export class SpaceGroup {
           this.assertMove(this.items[i], coor)
         }
 
-        this.checkEquals() 
-    }
-
-    isInViewport(item) {
-      const VIEWPORT_SIZE = {
-        width: 40,
-        height: 50,
-      }
-      return item.getItem().position.x > -VIEWPORT_SIZE.width && item.getItem().position.x < VIEWPORT_SIZE.width &&
-        item.getItem().position.y > -VIEWPORT_SIZE.height && item.getItem().position.x < VIEWPORT_SIZE.height
     }
 
     getNextPosVertical(direction, item) {
@@ -115,8 +102,7 @@ export class SpaceGroup {
             MIN_VALUE)
         
         if (nextPos === MIN_VALUE) {
-          console.log(1)
-          return this.SIZE[1]
+          return this.getCanvasHeight()
         }
 
         return nextPos + this.getCanvasHeight()
@@ -141,7 +127,7 @@ export class SpaceGroup {
           return -this.getCanvasWidth()
         }
 
-        return nextPos - this.SIZE[0]
+        return nextPos - this.getCanvasWidth()
       } else if (direction === HorizontalDirection.LEFT) {
         const nextPos = this.items
           .filter(it => {
@@ -155,17 +141,17 @@ export class SpaceGroup {
             MIN_VALUE)
         
         if (nextPos === MIN_VALUE) {
-          return this.SIZE[0]
+          return this.getCanvasWidth()
         }
 
-        return nextPos + this.SIZE[0]
+        return nextPos + this.getCanvasWidth()
       }
 
     }
 
     assertMoveBottomVertical(item, verticalDirection) {
       if (verticalDirection === VerticalDirection.BOTTOM) {
-        if (item.getY() < -this.SIZE[1]) {
+        if (item.getY() < -this.getCanvasHeight()) {
           item.setY(this.getNextPosVertical(verticalDirection, item))
           this.didMoveVerticalOne = true
         } 
@@ -174,7 +160,7 @@ export class SpaceGroup {
 
     assertMoveTopVertical(item, verticalDirection) {
       if (verticalDirection === VerticalDirection.TOP) {
-        if (item.getY() > this.SIZE[1]) {
+        if (item.getY() > this.getCanvasHeight()) {
           item.setY(this.getNextPosVertical(verticalDirection, item))
           this.didMoveVerticalOne = true
         } 
@@ -184,7 +170,7 @@ export class SpaceGroup {
     assertMoveLeftHorizontal(item, horizontalDirection) {  
       if (horizontalDirection === HorizontalDirection.LEFT && !this.didMoveHorizontalOne) {
 
-        if (item.getX() < -this.SIZE[0]) {
+        if (item.getX() < -this.getCanvasWidth()) {
           item.setX(this.getNextPosHorizontal(horizontalDirection, item))
           this.didMoveHorizontalOne = true
         } 
@@ -193,7 +179,7 @@ export class SpaceGroup {
 
     assertMoveRightHorizontal(item, horizontalDirection) {
       if (horizontalDirection === HorizontalDirection.RIGHT && !this.didMoveHorizontalOne) {
-        if (item.getX() > this.SIZE[0]) {
+        if (item.getX() > this.getCanvasWidth()) {
           item.setX(this.getNextPosHorizontal(horizontalDirection, item))
           this.didMoveHorizontalOne = true
         } 

@@ -43,12 +43,7 @@ export class VideoItem extends ItemBase{
 
 		}, false );
 
-        
-        
-
         this.group = new THREE.Group();
-        
-        
 
     }
 
@@ -58,5 +53,13 @@ export class VideoItem extends ItemBase{
 
     render() {
 
+    }
+
+    show() {
+        
+    }
+
+    hide() {
+        
     }
 }
