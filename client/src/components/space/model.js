@@ -2,12 +2,14 @@ import * as THREE from 'three';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
+import{ ItemBase } from './item-base'
 
 export const MODEL_ITEM_TYPE = 'model'
 const MODEL_WIDTH = 20;
 
-export class ModelItem {
+export class ModelItem extends ItemBase{
     constructor(data, obj_z) {
+        super()
         this.data = data; 
         this.obj_z = obj_z;       
     }

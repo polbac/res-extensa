@@ -4,9 +4,11 @@ import { Chronological } from './pages/chronological'
 import { Extracts } from './pages/extracts'
 import { Landing } from './pages/landing'
 import { About } from './pages/about'
-import { Text } from './pages/text'
 import { Image } from './pages/image'
+import { Sound } from './pages/sound'
 import { Video } from './pages/video'
+import { Text } from './pages/text'
+
 import { createNavigation } from './components/nav/nav'
 
 const EventEmitter = require('events')
@@ -44,6 +46,9 @@ router
   })
   .on('text/:slug', function () {
     gotoPage(Text)
+  })
+  .on('sound/:sound', function () {
+    gotoPage(Sound)
   })
   .on('video/:slug', function () {
     gotoPage(Video)
