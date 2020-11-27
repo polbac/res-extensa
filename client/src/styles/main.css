@@ -1,3 +1,22 @@
+/*SCROLLBAR*/
+::-webkit-scrollbar {
+	display: none;
+}
+
+html,body {
+    background: #f2f2f2;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    /*
+    overflow: hidden;
+    overscroll-behavior-x: none;
+    */
+}
+
+/*MENU*/
 nav {
     font-family: 'Favorit Pro Light';
     font-size: 3.1vw;
@@ -9,6 +28,8 @@ nav {
     height: 5.25vw;
     border-bottom: 1px solid black;
     padding: .25vw 1vw 0 1vw;
+    background: #f2f2f2;
+    z-index: 99;
 }
 
 nav a { 
@@ -83,4 +104,77 @@ nav #menu a#search-button:hover img{
 nav #menu a#search-button:hover:after {
     content: "SEARCH";
     display: inline;
+}
+
+/*MOBILE*/
+@media (max-width:600px){
+
+    /* MENU */
+    nav {
+        font-family: 'Favorit Pro Light';
+        font-size: 10.5vw;
+        text-transform: uppercase;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 14vw;
+        border-bottom: 1px solid black;
+        z-index: 999;
+    }
+
+    .sitetitle {
+        width: 100vw;
+        text-align: center;
+        padding: 1vw 0;
+    }
+
+    #menu {
+        position: fixed;
+        width: 100vw;
+        height: 14vw;
+        left: 0;
+        bottom: 0;
+        background: #f2f2f2;
+        border-top: 1px solid black;
+        padding: 0vw 0;
+    }
+
+    nav #menu { 
+        float: inherit;
+        text-align: center;
+
+    }
+
+    nav #menu a { 
+        margin: 0 5vw ;
+    }
+
+    nav #menu a  { 
+        position: relative;
+    }
+
+    nav #menu a img { 
+        width: 7.5vw;
+        pointer-events: auto !important;
+    }
+
+    nav #menu a#random-button:after, nav #menu a#chrono-button:after, nav #menu a#about-button:after, nav #menu a#extracts-button:after, nav #menu a#search-button:after {
+        position: fixed;
+        bottom: 14vw;
+        left: 0;
+        width: 100vw;
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+        padding: 1.25vw 0;
+        font-size: 10.5vw;
+        background: #f2f2f2;
+        color: #B087FF;
+    }
+    
+
+    nav #menu a#random-button:hover img, nav #menu a#chrono-button:hover img, nav #menu a#about-button:hover img, nav #menu a#extracts-button:hover img, nav #menu a#search-button:hover img{
+        display: inline;
+    }
+    
 }

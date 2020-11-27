@@ -1,3 +1,158 @@
-main{
-    background: violet;
+#chrono-content {
+    margin-top: 5.5vw;
+}
+
+.project-row {
+    position: relative;
+    width: 100vw;
+    /*height: 6vw;*/
+    padding: 1vw 0 2.2vw 0;
+    border-bottom: 1px solid black;
+    line-height: .8;
+    transition: .5s;
+    background: linear-gradient( rgba(255,255,255,0), rgba(255,255,255,0)) !important;
+    z-indeX: 0;
+}
+
+.project-row:hover {
+    background: linear-gradient( #B087FF, rgba(255,255,255,0)) !important;
+}
+
+a.row-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.project {
+    display: inline-block;
+    width: 70vw;
+    margin-left: 15vw;
+    text-align: center;
+}
+
+#chrono-content title {
+    display: inline;
+    font-family: 'Favorit Pro Light';
+    font-size: 3.1vw;
+    text-transform: uppercase;
+}
+
+author {
+    display: block;
+    font-family: 'Phase GGX 100';
+    font-size: 3.6vw;
+}
+
+date {
+    position: absolute;
+    padding-left: 1vw;
+    float: left;
+    font-family: 'Favorit Pro Light';
+    font-size: 24px;
+    text-align: left;
+}
+
+a.category {
+    color: black;
+    text-decoration: none;
+    position: absolute;
+    right: 0;
+    padding-right: 1vw;
+    font-family: 'Favorit Pro Light';
+    font-size: 24px;
+    text-align: right;
+    letter-spacing: 0em;
+    transition: .2s;
+}
+
+a.category:hover {
+    letter-spacing: 0.05em;
+}
+
+/*MOBILE*/
+@media (max-width:600px){
+
+    #chrono-content {
+        margin-top: 14vw;
+        padding-bottom: 14vw;
+    }
+    
+    /*
+    .project-row {
+        position: relative;
+        width: 100vw;
+        padding: 1vw 0 2.2vw 0;
+        border-bottom: 1px solid black;
+        line-height: .8;
+        transition: .5s;
+        background: linear-gradient( rgba(255,255,255,0), rgba(255,255,255,0)) !important;
+        z-indeX: 0;
+    }
+    */
+
+    .project-row {
+        padding: 2.5vw 0;
+        z-indeX: 0;
+    }
+    
+    .project-row:hover {
+        background: linear-gradient( #B087FF, rgba(255,255,255,0)) !important;
+    }
+    
+    a.row-link {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .project {
+        display: inline-block;
+        width: 100vw;
+        margin-left: 0;
+        margin-top: calc(3.5vw + 16px);
+        margin-bottom: 2.5vw;
+        text-align: center;
+    }
+    
+    title {
+        display: block;
+        font-family: 'Favorit Pro Light';
+        font-size: 6vw;
+        text-transform: uppercase;
+    }
+    
+    author {
+        display: inline;
+        font-family: 'Phase GGX 100';
+        font-size: 7vw;
+    }
+    
+    date {
+        position: absolute;
+        padding-left: 2.5vw;
+        float: left;
+        font-family: 'Favorit Pro Light';
+        font-size: 16px;
+        text-align: left;
+    }
+    
+    a.category {
+        color: black;
+        text-decoration: none;
+        position: absolute;
+        right: 0;
+        padding-right: 2.5vw;
+        font-family: 'Favorit Pro Light';
+        font-size: 16px;
+        text-align: right;
+        letter-spacing: 0em;
+        transition: .2s;
+    }
+
+    
 }

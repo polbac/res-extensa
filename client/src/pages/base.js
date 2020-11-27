@@ -1,10 +1,17 @@
 import $ from 'jquery'
 
-
 export class Base {
-    constructor(pageSlug) {
+    constructor(pageSlug, url) {
         require(`../styles/${pageSlug}.css`);
         const template = require(`../templates/${pageSlug}.hbs`);
-        $('#section').html(template)
+        if (url) {
+            fetch(url)
+                .then(res => res.json())
+                .then(content => {
+                    console.log(content)
+                    $('#section').html(template(content))
+                })
+        }
+        
     }
 }
