@@ -2,8 +2,8 @@ import { Base } from './base'
 
 export class Video extends Base{
 
-    constructor() {
-        super('video')
+    constructor(router) {
+        super(router, 'video')
     }
 
     destroy() {

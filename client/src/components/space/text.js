@@ -4,7 +4,7 @@ import{ ItemBase } from './item-base'
 import { getAssetsLoader } from './assets-loader'
 
 export const TEXT_ITEM_TYPE = 'text'
-console.log('ItemBase',ItemBase)
+
 export class TextItem extends ItemBase{
     constructor(data, obj_z) {
         super()
@@ -44,19 +44,43 @@ export class TextItem extends ItemBase{
         this.meshTitle = new THREE.Mesh(this.geometryTitle, this.material);
         this.meshBody = new THREE.Mesh(this.geometryBody, this.material);
 
+
+
         this.title.add(this.meshTitle)
         this.body.add(this.meshBody)
-        var area = new THREE.Box3();
-        area.setFromObject(this.title);
-        this.body.position.y = -area.max.y
+
+        this.sprite = new THREE.Group();
+        this.sprite.add(this.title)
+        this.sprite.add(this.body)
         
-        this.group = new THREE.Group();
-        this.group.add(this.title)
-        this.group.add(this.body)
+
+        const areaTitle = new THREE.Box3();
+        areaTitle.setFromObject(this.title);
+        this.body.position.y = -areaTitle.max.y
+
+        const totalBody = new THREE.Box3();
+        totalBody.setFromObject(this.sprite);
+
+        this.iteractiveAreaGeo = new THREE.PlaneGeometry(
+            20, 
+            8,
+            32
+        );
+
+        this.iteractiveAreaMaterial = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} );
+        this.iteractiveAreaMesh = new THREE.Mesh(this.iteractiveAreaGeo, this.iteractiveAreaMaterial);
+
+        this.iteractiveAreaMesh.position.set(10, -2)
+        this.sprite.add(this.iteractiveAreaMesh)
+        this.iteractiveAreaMesh._data = this.data
     }
 
     getItem() {
-        return this.group
+        return this.sprite
+    }
+
+    getItemDetectMouse() {
+        return this.iteractiveAreaMesh
     }
 
     render() {

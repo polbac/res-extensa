@@ -20,10 +20,14 @@ export class ImageItem extends ItemBase{
             this.sprite.scale.set(IMAGE_WIDTH, IMAGE_WIDTH * (this.image.height / this.image.width), 1);    
         }
         this.image.src = this.data.src
-
+        this.sprite._data = this.data
     }
 
     getItem() {
+        return this.sprite
+    }
+
+    getItemDetectMouse() {
         return this.sprite
     }
 
