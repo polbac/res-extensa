@@ -30,7 +30,7 @@ export class TextItem extends ItemBase{
             font: getAssetsLoader()['font-1']
         });
 
-        this.geometryBody = new THREE.TextGeometry(this.data.body, {
+        this.geometryBody = new THREE.TextGeometry(this.data.subtitle, {
             size: 1,
             height: 0.01,
             curveSegments: 10,
@@ -67,7 +67,10 @@ export class TextItem extends ItemBase{
             32
         );
 
-        this.iteractiveAreaMaterial = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} );
+        this.iteractiveAreaMaterial = new THREE.MeshPhongMaterial({
+            opacity: 0,
+            transparent: true,
+          });
         this.iteractiveAreaMesh = new THREE.Mesh(this.iteractiveAreaGeo, this.iteractiveAreaMaterial);
 
         this.iteractiveAreaMesh.position.set(10, -2)

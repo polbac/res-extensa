@@ -5,21 +5,39 @@ import { SpaceGroup } from '../components/space/group'
 import { loadAssets } from '../components/space/assets-loader'
 import { Base } from './base'
 import { UserControl, MOVE, MOUSE_MOVE, CLICK } from '../components/space/user-control'
-import { VerticalDirection, HorizontalDirection } from '../components/space/user-control'
+
 import $ from 'jquery'
 export class Random extends Base{
     constructor(router){
-        super(router, 'random')
-        this.show() 
+        super(
+            router, 
+            'random',
+            'http://ee.testeando.website/index.php/content',
+        )
+
         this.router = router
+    }
+
+
+    mapData(data) {
+        let newData = data.items
+        let index = 0
+        
+        while (newData.length < 10) {
+            newData.push(newData[index])
+            index++
+        }
+
+        return newData
     }
 
     show() {
         this.currentOver = null
         this.userControl = new UserControl()
-        const areas =  arrayDivider(list, 1)
+        console.log(this.data)
+        const areas =  arrayDivider(this.data, 1)
         this.renderer = new THREE.WebGLRenderer({alpha: true });
-        this.renderer.setClearColor(0x0000ff);
+        this.renderer.setClearColor(0xf2f2f2);
         
         this.renderer.setSize( window.innerWidth, window.innerHeight );
         this.camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 1000 );
@@ -32,9 +50,9 @@ export class Random extends Base{
         this.counter = 0
 
         document.body.appendChild( this.renderer.domElement );
-        console.log('starting')
+        
         loadAssets().then(() => {
-            console.log('cargo')
+            
             this.groups = [
                 new SpaceGroup(areas[0], this.scene, 0),
                 new SpaceGroup(areas[0], this.scene, 1),

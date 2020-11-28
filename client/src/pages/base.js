@@ -10,14 +10,18 @@ export class Base {
                 .then(res => res.json())
                 .then(content => {
                     let data = content
+                    
                     if (this.mapData) data = this.mapData(data)
+                    this.data = data
                     $('#section').html(template(data))
+                    if (this.show) this.show()
                     this.bindLinks()
                 })
             return
         }   
         $('#section').html(template)
         this.bindLinks()
+        if (this.show) this.show()
     }
 
     bindLinks() {

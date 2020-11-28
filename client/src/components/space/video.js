@@ -16,10 +16,12 @@ export class VideoItem extends ItemBase{
     build() {
         const idDOMElement = uuidv4()
         
-        $("body").append(`<video controls autoplay style='z-index: 0; position: absolute; top: 0; left: 0'  id='${idDOMElement}' src='${this.data.src}' muted="muted"></video>`)
+        $("body").append(`<video controls autoplay style='z-index: 0; position: absolute; top: 0; left: 0'  id='${idDOMElement}' src='${this.data.video}' muted="muted" ></video>`)
         
         this.video = document.getElementById(idDOMElement);
-        
+        this.video.setAttribute('crossorigin', 'anonymous');
+        this.video.load(); // must call after setting/changing source
+        this.video.play();
         let width, height
         this.video.addEventListener("loadedmetadata", () => {
 
@@ -47,11 +49,14 @@ export class VideoItem extends ItemBase{
 
         this.iteractiveAreaGeo = new THREE.PlaneGeometry(
             20, 
-            8,
+            10,
             32
         );
 
-        this.iteractiveAreaMaterial = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} );
+        this.iteractiveAreaMaterial = new THREE.MeshPhongMaterial({
+            opacity: 0,
+            transparent: true,
+          });
         this.iteractiveAreaMesh = new THREE.Mesh(this.iteractiveAreaGeo, this.iteractiveAreaMaterial);
 
         this.iteractiveAreaMesh.position.set(0, 0)
