@@ -11,6 +11,8 @@ export class Base {
                     console.log(content)
                     $('#section').html(template(content))
                 })
+        } else {
+            $('#section').html(template())
         }
         
     }
