@@ -1,6 +1,5 @@
 import * as THREE from 'three';
-import { arrayDivider } from '../utils/array'
-import list from '../mock/random'
+import { arrayDivider, shuffle } from '../utils/array'
 import { SpaceGroup } from '../components/space/group'
 import { loadAssets } from '../components/space/assets-loader'
 import { Base } from './base'
@@ -28,7 +27,7 @@ export class Random extends Base{
             index++
         }
 
-        return newData
+        return shuffle(newData)
     }
 
     show() {

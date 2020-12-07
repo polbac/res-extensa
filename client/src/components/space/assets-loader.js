@@ -10,7 +10,7 @@ class AssetsLoader {
 
     load() {
         return new Promise(resolve => {
-            loader.load('https://raw.githubusercontent.com/rollup/three-jsnext/master/examples/fonts/helvetiker_regular.typeface.json', font => {
+            loader.load('Favorit_Pro_Light_Regular.json', font => {
                 this.assets['font-1'] = font
                 resolve()
             });

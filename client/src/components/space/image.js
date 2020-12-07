@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import{ ItemBase } from './item-base'
+import { IMAGE_FOLDER } from '../../config'
 
 export const IMAGE_ITEM_TYPE = 'image'
 const IMAGE_WIDTH = 20;
@@ -12,7 +13,7 @@ export class ImageItem extends ItemBase{
     }
 
     build() {
-        const image = this.data.image.replace('{filedir_8}', 'http://ee.testeando.website/themes/user/site/default/asset/img/home/')
+        const image = this.data.image.replace('{filedir_8}', IMAGE_FOLDER)
         this.map = new THREE.TextureLoader().load(image);
         this.material = new THREE.SpriteMaterial( { map: this.map, color: 0xffffff } );
         this.sprite = new THREE.Sprite( this.material );
