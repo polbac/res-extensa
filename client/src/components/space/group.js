@@ -193,10 +193,27 @@ export class SpaceGroup {
         this.assertMoveRightHorizontal(item, horizontalDirection)
     }
 
+    setMousePosition(coor) {
+      this.items.forEach(item => item.setMousePosition(coor))
+    }
 
     render() {
       this.matrix.forEach(row => {
         row.forEach(item => item.render())
       })
+    }
+
+    isSomeItemMouseInside() {
+      let isSomeItemMouseInside = false
+      
+      this.matrix.forEach(row => {
+        row.forEach(item => {
+          if (item.isMouseInside()) {
+            isSomeItemMouseInside = true 
+          }
+        })
+      })
+
+      return isSomeItemMouseInside
     }
 }

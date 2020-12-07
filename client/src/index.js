@@ -25,7 +25,7 @@ const gotoPage = Section => {
     page.destroy()
   }
 
-  page = new Section()
+  page = new Section(router)
 }
 
 router

@@ -2,8 +2,8 @@ import { Base } from './base'
 
 export class Text extends Base{
 
-    constructor() {
-        super('text')
+    constructor(router) {
+        super(router, 'text')
     }
 
     destroy() {
