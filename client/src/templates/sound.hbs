@@ -1,1 +1,45 @@
-sound
+<div id="sound-content">
+
+    <div class="col-left">
+
+        <div class="post">
+            <time>Apr 1st 2020</time>
+            <h2 class="title">{{title}}</h2>
+            <h3 class="author">{{author}}</h3>
+            <h4 class="subtitle">{{subtitle}}</h4>
+        </div>
+
+        <div class="audio">
+            <div class="play">
+                <button>play</button>
+                <track>Name • Name</track>
+            </div>
+
+            <time>00:00:00</time>
+
+            <audio></audio>
+
+            <div class="tracklist">
+                <p>blabla</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-right">
+
+        {{#each images}}
+        <div class="row img">
+            <img src="{{col_id_11}}" />
+
+            <div class="epigraph">
+                {{col_id_12}}
+            </div>
+        </div>
+        {{/each}}
+    </div>
+
+</div>
+
+</div>
