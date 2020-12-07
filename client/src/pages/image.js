@@ -14,7 +14,8 @@ export class Image extends Base{
     mapData(data) {
         data.images = data.images.map(image => ({
             ...image,
-            col_id_11: image.col_id_11.replace('{filedir_8}', IMAGE_FOLDER)
+            col_id_11: image.col_id_11
+                .replace('{filedir_8}', IMAGE_FOLDER)
                 .replace('{filedir_6}', IMAGE_FOLDER_BLOG)
         }))
         return data
