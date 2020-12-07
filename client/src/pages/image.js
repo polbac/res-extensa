@@ -2,8 +2,8 @@ import { Base } from './base'
 
 export class Image extends Base{
 
-    constructor() {
-        super('image')
+    constructor(router) {
+        super(router, 'image')
     }
 
     destroy() {
