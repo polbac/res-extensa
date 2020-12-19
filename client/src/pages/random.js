@@ -50,32 +50,30 @@ export class Random extends Base{
 
         document.body.appendChild( this.renderer.domElement );
         
-        loadAssets().then(() => {
-            
-            this.groups = [
-                new SpaceGroup(areas[0], this.scene, 0),
-                new SpaceGroup(areas[0], this.scene, 1),
-            ]
-            
-            this.groups[0].build()
-            this.groups[1].build()
-            this.animate.bind(this)()
-            
-            global.eventEmitter.on(
-                MOVE,
-                this.move.bind(this)
-            )
 
-            global.eventEmitter.on(
-                MOUSE_MOVE,
-                this.mouseMove.bind(this)
-            )
+        this.groups = [
+            new SpaceGroup(areas[0], this.scene, 0),
+            new SpaceGroup(areas[0], this.scene, 1),
+        ]
+        
+        this.groups[0].build()
+        this.groups[1].build()
+        this.animate.bind(this)()
+        
+        global.eventEmitter.on(
+            MOVE,
+            this.move.bind(this)
+        )
 
-            global.eventEmitter.on(
-                CLICK,
-                this.click.bind(this)
-            )
-        })   
+        global.eventEmitter.on(
+            MOUSE_MOVE,
+            this.mouseMove.bind(this)
+        )
+
+        global.eventEmitter.on(
+            CLICK,
+            this.click.bind(this)
+        )
     }
 
     move(coor) {

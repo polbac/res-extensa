@@ -2,10 +2,10 @@ import * as THREE from 'three';
 import{ ItemBase } from './item-base'
 import { IMAGE_FOLDER } from '../../config'
 
-export const TEXT_ITEM_TYPE = 'text'
+export const TEXT_ITEM_TYPE = 'sound'
 const IMAGE_WIDTH = 35;
 
-export class TextItem extends ItemBase{
+export class SoundItem extends ItemBase{
     constructor(data, obj_z) {
         super()
         this.data = data; 
