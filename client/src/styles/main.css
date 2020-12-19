@@ -17,6 +17,10 @@ html,body {
     display: block;
 }
 
+* {
+    font-weight: normal;
+}
+
 /*MENU*/
 nav {
     font-family: 'Favorit Pro Light';

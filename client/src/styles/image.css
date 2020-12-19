@@ -2,6 +2,13 @@
     /*padding: 1vw 1vw 2.2vw 1vw;*/
 }
 
+h2 {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    padding: 0;
+    margin: 0;
+}
+
 .col-left {
     position: fixed;
     top: 0;
@@ -9,21 +16,41 @@
     height: 100%;
     width: 48.8vw;
     height: 100%;
-    padding: 1.2vw 0 0 1.2vw;
+    padding: 1.4vw 0 0 1.2vw;
     border-right: 1px solid black;
     overflow-y: scroll;
 }
 
 .col-left .post {
     display: block;
-    font-family: 'Phase GGX 100';
-    font-size: 2.3vw;
+    text-align: center;
     padding-top: 5.5vw;
+}
+
+.col-left time {
+    font-family: 'Favorit Pro Light';
+    font-size: 1.2vw;
+}
+
+.col-left .title {
+    display: block;
+    font-family: 'Favorit Pro Light';
+    font-size: 2.5vw;
+    text-transform: uppercase ;
+    padding-top: 2.2vw;
+}
+
+.col-left .title:before {
+    content: open-quote;
+}
+
+.col-left .title:after {
+    content: close-quote;
 }
 
 .col-left subtitle {
     display: block;
-    font-family: 'Favorit Pro Light';
+    font-family: 'Phase GGX 100';
     font-size: 2.3vw;
     line-height: 1;
     padding-top: 1.4vw;
@@ -65,7 +92,6 @@ input.email {
     font-size: 1.2vw;
     position: absolute;
     bottom: 2vw;
-
 }
 
 .col-right {
