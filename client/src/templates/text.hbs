@@ -15,12 +15,22 @@
 
     </div>
 
-    
-    <div class="col-right"></div>
+    <div class="col-right">
+
         {{#each images}}
-        <img src="{{col_id_11}}" />
-        <p>{{col_id_12}}</p>
+        <div class="row img">
+            <img src="{{col_id_11}}" />
+
+            <div class="epigraph">
+                {{col_id_12}}
+            </div>
+        </div>
         {{/each}}
+    </div>
+
+    <div class="entries-nav">
+        <a id="arrow-prev"><img src="/arrow-prev.svg"/></a>
+        <a id="arrow-next"><img src="/arrow-next.svg"/></a>
     </div>
 
 </div>

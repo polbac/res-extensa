@@ -21,6 +21,13 @@ html,body {
     font-weight: normal;
 }
 
+h2, h3, h4, h5 {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    padding: 0;
+    margin: 0;
+}
+
 /*MENU*/
 nav {
     font-family: 'Favorit Pro Light';

@@ -1,0 +1,89 @@
+#video-content {
+    padding: 5.5vw 19vw 2.2vw 19vw;
+    display: block;
+    text-align: center;
+    background: black;
+    height: 100vh;
+    overflow-Y: scroll;
+}
+
+/*ENTRIES NAV*/
+.entries-nav { 
+    width: 98vw;
+    padding: .25vw 1vw 0 1vw;
+    position: fixed;
+    top: 6vw;
+    left: 0;
+}
+
+.entries-nav a img { 
+    width: 3.3vw;
+    position: relative;
+    top: .25vw;
+    pointer-events: none !important;
+}
+
+.entries-nav #arrow-prev {
+    position: absolute;
+    left: 1vw;
+}
+
+.entries-nav #arrow-next {
+    position: absolute;
+    right: 1vw;
+}
+
+#video-content .post {
+    display: block;
+    text-align: center;
+    margin-top: 1.4vw;
+    padding-bottom: 3vw;
+}
+
+#video-content .post time {
+    font-family: 'Favorit Pro Light';
+    font-size: 1.2vw;
+    color: white;
+}
+
+#video-content .post .title {
+    display: block;
+    font-family: 'Favorit Pro Light';
+    font-size: 2.5vw;
+    text-transform: uppercase ;
+    padding-top: 2vw;
+    color: white;
+}
+
+#video-content .post .title:before {
+    content: open-quote;
+    color: white;
+}
+
+#video-content .post .title:after {
+    content: close-quote;
+    color: white;
+}
+
+#video-content .post .author {
+    display: block;
+    font-family: 'Phase GGX 100';
+    font-size: 2.3vw;
+    line-height: .9;
+    color: white;
+}
+
+/* VIDEO */
+/*
+#image-content .epigraph{
+    font-family: 'Favorit Pro Light';
+    font-size: 16px;
+    text-align: left;
+    padding: .5vw 0 3vw 0;
+}
+
+.row.img img{
+    width: 100%;
+    padding-left: 1px;
+}
+*/

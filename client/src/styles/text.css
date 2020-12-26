@@ -2,11 +2,28 @@
     /*padding: 1vw 1vw 2.2vw 1vw;*/
 }
 
-h2 {
-    margin-block-start: 0;
-    margin-block-end: 0;
-    padding: 0;
-    margin: 0;
+.entries-nav { 
+    width: 98vw;
+    padding: .25vw 1vw 0 1vw;
+    position: fixed;
+    top: 6vw;
+}
+
+.entries-nav a img { 
+    width: 3.3vw;
+    position: relative;
+    top: .25vw;
+    pointer-events: none !important;
+}
+
+.entries-nav #arrow-prev {
+    position: absolute;
+    left: 1vw;
+}
+
+.entries-nav #arrow-next {
+    position: absolute;
+    right: 1vw;
 }
 
 .col-left {
@@ -36,8 +53,9 @@ h2 {
     display: block;
     font-family: 'Favorit Pro Light';
     font-size: 2.5vw;
+    line-height: .9;
     text-transform: uppercase ;
-    padding-top: 2.2vw;
+    padding-top: 2vw;
 }
 
 .col-left .title:before {
@@ -48,6 +66,14 @@ h2 {
     content: close-quote;
 }
 
+.col-left .author {
+    display: block;
+    font-family: 'Phase GGX 100';
+    font-size: 2.3vw;
+    line-height: .9;
+}
+
+/*
 .col-left subtitle {
     display: block;
     font-family: 'Phase GGX 100';
@@ -55,13 +81,16 @@ h2 {
     line-height: 1;
     padding-top: 1.4vw;
 }
+*/
 
-text {
+.col-left .text {
     font-family: 'Happy Times Regular';
     font-size: 1.3vw;
-    line-height: 1;
+    line-height: 1.25;
+    padding: 2.2vw 1.2vw 0 0;
 }
 
+/*
 #boxes {
     margin-top: 2.8vw;
     padding-right: 2.3vw;
@@ -93,6 +122,7 @@ input.email {
     position: absolute;
     bottom: 2vw;
 }
+*/
 
 .col-right {
     position: fixed;
@@ -100,13 +130,12 @@ input.email {
     right: 0;
     height: 100%;
     width: 50vw;
-    height: 100%;
     /*padding-top: 1vw;*/
     overflow-y: scroll;
 }
 
 .col-right .row:first-child {
-    padding-top: 5.5vw;
+    padding-top: 10.1vw;
 }
 
 .col-right .row:last-child {
@@ -119,6 +148,7 @@ input.email {
     border-bottom: 1px solid black;
 }
 
+/*
 .row category {
     display: block;
     color: black;
@@ -130,12 +160,13 @@ input.email {
     line-height: 1;
     padding: 1.2vw;
 }
+*/
 
 /* IMAGE */
 .row.img .epigraph{
     font-family: 'Favorit Pro Light';
     font-size: 16px;
-    padding: .5vw 1.2vw 0 1.2vw;
+    padding: .5vw 1.2vw 1vw 1.2vw;
 }
 
 .row.img img{
