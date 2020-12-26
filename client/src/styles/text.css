@@ -1,0 +1,190 @@
+#text-content {
+    /*padding: 1vw 1vw 2.2vw 1vw;*/
+}
+
+.entries-nav { 
+    width: 98vw;
+    padding: .25vw 1vw 0 1vw;
+    position: fixed;
+    top: 6vw;
+}
+
+.entries-nav a img { 
+    width: 3.3vw;
+    position: relative;
+    top: .25vw;
+    pointer-events: none !important;
+}
+
+.entries-nav #arrow-prev {
+    position: absolute;
+    left: 1vw;
+}
+
+.entries-nav #arrow-next {
+    position: absolute;
+    right: 1vw;
+}
+
+.col-left {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 48.8vw;
+    height: 100%;
+    padding: 1.4vw 0 0 1.2vw;
+    border-right: 1px solid black;
+    overflow-y: scroll;
+}
+
+.col-left .post {
+    display: block;
+    text-align: center;
+    padding-top: 5.5vw;
+}
+
+.col-left time {
+    font-family: 'Favorit Pro Light';
+    font-size: 1.2vw;
+}
+
+.col-left .title {
+    display: block;
+    font-family: 'Favorit Pro Light';
+    font-size: 2.5vw;
+    line-height: .9;
+    text-transform: uppercase ;
+    padding-top: 2vw;
+}
+
+.col-left .title:before {
+    content: open-quote;
+}
+
+.col-left .title:after {
+    content: close-quote;
+}
+
+.col-left .author {
+    display: block;
+    font-family: 'Phase GGX 100';
+    font-size: 2.3vw;
+    line-height: .9;
+}
+
+/*
+.col-left subtitle {
+    display: block;
+    font-family: 'Phase GGX 100';
+    font-size: 2.3vw;
+    line-height: 1;
+    padding-top: 1.4vw;
+}
+*/
+
+.col-left .text {
+    font-family: 'Happy Times Regular';
+    font-size: 1.3vw;
+    line-height: 1.25;
+    padding: 2.2vw 1.2vw 0 0;
+}
+
+/*
+#boxes {
+    margin-top: 2.8vw;
+    padding-right: 2.3vw;
+}
+
+#boxes label {
+    height: 2.8vw;
+    display: block;
+}
+
+#boxes label text{
+    margin-left: 1.4vw;
+}
+
+input.box {
+    border: 0;
+    background: #f2f2f2;
+}
+
+input.email {
+    width: 24vw;
+    margin-top: 2.8vw;
+}
+
+#terms {
+    width: 48vw;
+    font-family: 'Favorit Pro Light';
+    font-size: 1.2vw;
+    position: absolute;
+    bottom: 2vw;
+}
+*/
+
+.col-right {
+    position: fixed;
+    top: 0vw;
+    right: 0;
+    height: 100%;
+    width: 50vw;
+    /*padding-top: 1vw;*/
+    overflow-y: scroll;
+}
+
+.col-right .row:first-child {
+    padding-top: 10.1vw;
+}
+
+.col-right .row:last-child {
+    border-bottom: 0;
+}
+
+.row {
+    display: block;
+    padding-bottom: 1.2vw;
+    border-bottom: 1px solid black;
+}
+
+/*
+.row category {
+    display: block;
+    color: black;
+    text-decoration: none;
+    font-family: 'Favorit Pro Light';
+    font-size: 20px;
+    text-align: left;
+    letter-spacing: 0em; 
+    line-height: 1;
+    padding: 1.2vw;
+}
+*/
+
+/* IMAGE */
+.row.img .epigraph{
+    font-family: 'Favorit Pro Light';
+    font-size: 16px;
+    padding: .5vw 1.2vw 1vw 1.2vw;
+}
+
+.row.img img{
+    width: 100%;
+    padding-left: 1px;
+}
+
+/* TEXT */
+.row.text .title {
+    font-family: 'Favorit Pro Light';
+    font-size: 2.3vw;
+    line-height: 1;
+    padding: 0 1.2vw;
+}
+
+.row.text .epigraph{
+    font-family: 'Happy Times Regular';
+    font-size: 1.3vw;
+    line-height: 1.2;
+    padding: 0 1.2vw;
+}

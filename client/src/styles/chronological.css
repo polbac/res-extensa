@@ -8,14 +8,14 @@
     /*height: 6vw;*/
     padding: 1vw 0 2.2vw 0;
     border-bottom: 1px solid black;
-    line-height: .8;
+    /*line-height: .9;*/
     transition: .5s;
-    background: linear-gradient( rgba(255,255,255,0), rgba(255,255,255,0)) !important;
+    background: linear-gradient( rgba(176,135,255,0), rgba(255,255,255,0)) !important;
     z-indeX: 0;
 }
 
 .project-row:hover {
-    background: linear-gradient( #B087FF, rgba(255,255,255,0)) !important;
+    background: linear-gradient( rgba(176,135,255,1), rgba(255,255,255,0)) !important;
 }
 
 a.row-link {
@@ -37,6 +37,7 @@ a.row-link {
     display: inline;
     font-family: 'Favorit Pro Light';
     font-size: 3.1vw;
+    line-height: .9;
     text-transform: uppercase;
 }
 
@@ -44,6 +45,7 @@ author {
     display: block;
     font-family: 'Phase GGX 100';
     font-size: 3.6vw;
+    line-height: .75;
 }
 
 date {
