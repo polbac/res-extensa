@@ -10,7 +10,9 @@
     border-bottom: 1px solid black;
     /*line-height: .9;*/
     transition: .5s;
+    /*
     background: linear-gradient( rgba(176,135,255,0), rgba(255,255,255,0)) !important;
+    */
     z-indeX: 0;
 }
 
