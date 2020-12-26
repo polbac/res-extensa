@@ -13,7 +13,7 @@ import { createNavigation } from './components/nav/nav'
 
 const EventEmitter = require('events')
 global.eventEmitter = new EventEmitter()
-
+console.log('HOLA123')
 require('./styles/main.css')
 
 const router = new Navigo('http://localhost:3000/', false);

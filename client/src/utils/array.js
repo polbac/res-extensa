@@ -1,4 +1,5 @@
 
+
 export function arrayDivider(array, number) {
     const itemsPerArea = Math.floor(array.length / number);
     const newArray = [];
