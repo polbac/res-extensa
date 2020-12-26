@@ -33,7 +33,6 @@ export class Random extends Base{
     show() {
         this.currentOver = null
         this.userControl = new UserControl()
-        console.log(this.data)
         const areas =  arrayDivider(this.data, 1)
         this.renderer = new THREE.WebGLRenderer({alpha: true });
         this.renderer.setClearColor(0xf2f2f2);
