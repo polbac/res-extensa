@@ -31,9 +31,9 @@
     top: 0;
     left: 0;
     height: 100%;
-    width: 48.8vw;
+    width: 50vw;
     height: 100%;
-    padding: 1.4vw 0 0 1.2vw;
+    padding: 1.4vw 0 0 0;
     border-right: 1px solid black;
     overflow-y: scroll;
 }
@@ -41,7 +41,7 @@
 .col-left .post {
     display: block;
     text-align: center;
-    padding-top: 5.5vw;
+    padding: 5.5vw 1.2vw 0 1.2vw;
 }
 
 .col-left time {
@@ -87,42 +87,8 @@
     font-family: 'Happy Times Regular';
     font-size: 1.3vw;
     line-height: 1.25;
-    padding: 2.2vw 1.2vw 0 0;
+    padding: 2.2vw 1.2vw 0 1.2vw;
 }
-
-/*
-#boxes {
-    margin-top: 2.8vw;
-    padding-right: 2.3vw;
-}
-
-#boxes label {
-    height: 2.8vw;
-    display: block;
-}
-
-#boxes label text{
-    margin-left: 1.4vw;
-}
-
-input.box {
-    border: 0;
-    background: #f2f2f2;
-}
-
-input.email {
-    width: 24vw;
-    margin-top: 2.8vw;
-}
-
-#terms {
-    width: 48vw;
-    font-family: 'Favorit Pro Light';
-    font-size: 1.2vw;
-    position: absolute;
-    bottom: 2vw;
-}
-*/
 
 .col-right {
     position: fixed;
@@ -130,19 +96,18 @@ input.email {
     right: 0;
     height: 100%;
     width: 50vw;
-    /*padding-top: 1vw;*/
     overflow-y: scroll;
 }
 
-.col-right .row:first-child {
-    padding-top: 10.1vw;
+.col-right .img-row:first-child {
+    padding-top: 10.1vw; 
 }
 
-.col-right .row:last-child {
+.col-right .img-row:last-child {
     border-bottom: 0;
 }
 
-.row {
+.img-row {
     display: block;
     padding-bottom: 1.2vw;
     border-bottom: 1px solid black;
@@ -163,15 +128,15 @@ input.email {
 */
 
 /* IMAGE */
-.row.img .epigraph{
+.img-row img{
+    width: 100%;
+    padding-left: 1px;
+}
+
+.img-row .epigraph{
     font-family: 'Favorit Pro Light';
     font-size: 16px;
     padding: .5vw 1.2vw 1vw 1.2vw;
-}
-
-.row.img img{
-    width: 100%;
-    padding-left: 1px;
 }
 
 /* TEXT */

@@ -16,11 +16,12 @@
     left: 0;
 }
 
-.entries-nav a img { 
+#video-content .entries-nav a img { 
     width: 3.3vw;
     position: relative;
     top: .25vw;
     pointer-events: none !important;
+    filter: invert(1);
 }
 
 .entries-nav #arrow-prev {
@@ -75,15 +76,14 @@
 
 /* VIDEO */
 /*
-#image-content .epigraph{
+#video-content .post-content .epigraph{
     font-family: 'Favorit Pro Light';
     font-size: 16px;
     text-align: left;
     padding: .5vw 0 3vw 0;
 }
+*/
 
-.row.img img{
-    width: 100%;
+.post-content .video-row video{
     padding-left: 1px;
 }
-*/
