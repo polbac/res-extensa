@@ -1,15 +1,15 @@
 {
     "routes": [
-        { "src": "/random", "dest": "index.html" },
-        { "src": "/chronological", "dest": "index.html" },
-        { "src": "/extracts", "dest": "index.html" },
-        { "src": "/about", "dest": "index.html" },
-        { "src": "/image/(?<id>[^/]+)", "dest": "index.html" },
-        { "src": "/text/(?<id>[^/]+)", "dest": "index.html" },
-        { "src": "/video/(?<id>[^/]+)", "dest": "index.html" },
-        { "src": "/sound/(?<id>[^/]+)", "dest": "index.html" },
-        { "src": "/object/(?<id>[^/]+)", "dest": "index.html" },
-        { "src": "/3d/(?<id>[^/]+)", "dest": "index.html" }
+        { "src": "/random", "dest": "/index.html" },
+        { "src": "/chronological", "dest": "/index.html" },
+        { "src": "/extracts", "dest": "/index.html" },
+        { "src": "/about", "dest": "/index.html" },
+        { "src": "/image/(?<id>[^/]+)", "dest": "/index.html" },
+        { "src": "/text/(?<id>[^/]+)", "dest": "/index.html" },
+        { "src": "/video/(?<id>[^/]+)", "dest": "/index.html" },
+        { "src": "/sound/(?<id>[^/]+)", "dest": "/index.html" },
+        { "src": "/object/(?<id>[^/]+)", "dest": "/index.html" },
+        { "src": "/3d/(?<id>[^/]+)", "dest": "/index.html" }
     ]
   }
   
