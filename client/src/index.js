@@ -29,7 +29,7 @@ const gotoPage = Section => {
 }
 
 router
-  .on('/', function () {
+  .on('', function () {
     gotoPage(Landing)
   })  
   .on('random', function () {
@@ -59,3 +59,5 @@ router
   .resolve();
 
   createNavigation(router)
+
+  console.log('index.js')
