@@ -77,9 +77,8 @@ a.category:hover {
 }
 
 /*MOBILE*/
-@media (max-width:600px){
-
-    #chrono-content {
+@media (max-width: 600px){
+    #chrono-content{
         margin-top: 14vw;
         padding-bottom: 14vw;
     }
