@@ -6,7 +6,7 @@ export class About extends Base{
         super(
             router,
             'about',
-            'http://ee.testeando.website/index.php/about'
+            '//ee.testeando.website/index.php/about'
         )
     }
 
