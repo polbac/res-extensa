@@ -119,6 +119,12 @@ nav #menu a#search-button:hover:after {
     display: inline;
 }
 
+
+/*ENTRIES NAV (ARROWS)*/
+.entries-nav {
+    pointer-events: none !important;
+}
+
 /*MOBILE*/
 @media (max-width:600px){
 
