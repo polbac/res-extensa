@@ -1,9 +1,9 @@
 import * as THREE from 'three';
 import { arrayDivider, shuffle } from '../utils/array'
 import { SpaceGroup } from '../components/space/group'
-import { loadAssets } from '../components/space/assets-loader'
 import { Base } from './base'
 import { UserControl, MOVE, MOUSE_MOVE, CLICK } from '../components/space/user-control'
+import {TweenMax} from 'gsap'
 
 import $ from 'jquery'
 export class Random extends Base{
@@ -15,6 +15,8 @@ export class Random extends Base{
         )
 
         this.router = router
+        $("nav").addClass("random")
+        
     }
 
 
@@ -73,6 +75,9 @@ export class Random extends Base{
             CLICK,
             this.click.bind(this)
         )
+
+        TweenMax.set("canvas, video", { opacity: 0 })
+        TweenMax.to("canvas", 1, { opacity: 1, delay: 1 })
     }
 
     move(coor) {
@@ -133,12 +138,14 @@ export class Random extends Base{
     }
 
     destroy() {
+        document.querySelector('body').style.cursor = 'initial'
         cancelAnimationFrame(this.idAnimationFrame)
         this.renderer.renderLists.dispose()
         $("canvas,video").remove()
         this.scene = null
         this.camera = null
         this.renderer = null
+        $("nav").removeClass("random")
         
     }
 

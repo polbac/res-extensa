@@ -1,5 +1,5 @@
 import { Base } from './base'
-
+import $ from 'jquery'
 export class Chronological extends Base{
 
     constructor(router) {
@@ -8,6 +8,7 @@ export class Chronological extends Base{
             'chronological',
             '//ee.testeando.website/index.php/content',
         )
+        
     }
 
     mapData(data) {
@@ -20,6 +21,6 @@ export class Chronological extends Base{
     }
 
     destroy() {
-
+        
     }
 }

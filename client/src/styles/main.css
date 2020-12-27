@@ -58,13 +58,15 @@ g {
     font-family: 'Galapagos';
 }
 
-nav #menu { 
+nav #menu{
     float: right;
     text-align: right;
+    margin-top: .25vw;
 }
 
-nav #menu a { 
+nav #menu a{
     margin-left: 2.8vw;
+    line-height: 1;
 }
 
 nav #menu a img { 
@@ -82,7 +84,9 @@ nav #menu a#random-button:hover:after {
     content: "RANDOM";
     display: inline;
 }
-
+nav #menu a:hover:after{
+    line-height: 20px;
+}
 nav #menu a#chrono-button:hover img{
     display: none;
 }
@@ -196,4 +200,34 @@ nav #menu a#search-button:hover:after {
         display: inline;
     }
     
+}
+
+nav.random{
+    background: transparent;
+    border-bottom: 0;
+}
+
+#preloader{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999999;
+    backdrop-filter: blur(1px);
+    display: none;
+}
+
+#preloader #spinner{
+    width: 100px;
+    height: 100px;
+    background: black;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px;
+    margin-top: -50px;
+    text-align: center;
+    padding-top: 30px;
+    box-sizing: border-box;
 }

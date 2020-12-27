@@ -8,6 +8,8 @@ export class About extends Base{
             'about',
             '//ee.testeando.website/index.php/about'
         )
+
+        
     }
 
     destroy() {

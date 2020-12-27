@@ -2,9 +2,11 @@ import $ from 'jquery'
 
 export class Base {
     constructor(router, pageSlug, url) {
+        $("#preloader").show()
         this.router = router
         require(`../styles/${pageSlug}.css`);
         const template = require(`../templates/${pageSlug}.hbs`);
+        
         if (url) {
             fetch(url)
                 .then(res => res.json())
@@ -15,7 +17,9 @@ export class Base {
                     this.data = data
                     $('#section').html(template(data))
                     if (this.show) this.show()
+                    window.scrollTo(0, 0)
                     this.bindLinks()
+                    $("#preloader").hide()
                 })
                 return
         }
@@ -25,6 +29,8 @@ export class Base {
         this.bindLinks()
 
         if (this.show) this.show()
+        window.scrollTo(0, 0)
+        $("#preloader").hide()
     }
 
     bindLinks() {
