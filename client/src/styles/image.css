@@ -74,7 +74,8 @@
     padding: .5vw 0 3vw 0;
 }
 
-.post-content .img-row img{
+#image-content .post-content .img-row img{
     width: 100%;
     padding-left: 1px;
+    border-bottom: 0;
 }
