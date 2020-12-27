@@ -29,35 +29,33 @@ const gotoPage = Section => {
 }
 
 router
-  .on('', function () {
-    gotoPage(Landing)
-  })  
-  .on('random', function () {
+  .on('/random', function () {
     gotoPage(Random)
   })
-  .on('chronological', function () {
+  .on('/chronological', function () {
     gotoPage(Chronological)
   })
-  .on('extracts', function () {
+  .on('/extracts', function () {
     gotoPage(Extracts)
   })
-  .on('about', function () {
+  .on('/about', function () {
     gotoPage(About)
   })
-  .on('text/:slug', function () {
+  .on('/text/:slug', function () {
     gotoPage(Text)
   })
-  .on('sound/:sound', function () {
+  .on('/sound/:sound', function () {
     gotoPage(Sound)
   })
-  .on('video/:slug', function () {
+  .on('/video/:slug', function () {
     gotoPage(Video)
   })
-  .on('image/:slug', function () {
+  .on('/image/:slug', function () {
     gotoPage(Image)
   })
+  .on('*', function () {
+    gotoPage(Landing)
+  })  
   .resolve();
 
   createNavigation(router)
-
-  console.log('index.js')
