@@ -53,8 +53,8 @@ export class Random extends Base{
         
 
         this.groups = [
-            new SpaceGroup(areas[0], this.scene, 0),
-            new SpaceGroup(areas[0], this.scene, 1),
+            new SpaceGroup(areas[0], this.scene, 0, this.renderer),
+            new SpaceGroup(areas[0], this.scene, 1, this.renderer),
         ]
         
         this.groups[0].build()

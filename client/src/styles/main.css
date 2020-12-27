@@ -216,6 +216,7 @@ nav.random{
     z-index: 9999999;
     backdrop-filter: blur(1px);
     display: none;
+    background: #f2f2f2;
 }
 
 #preloader #spinner{

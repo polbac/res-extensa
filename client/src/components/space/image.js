@@ -6,10 +6,10 @@ export const IMAGE_ITEM_TYPE = 'image'
 const IMAGE_WIDTH = 20;
 
 export class ImageItem extends ItemBase{
-    constructor(data, obj_z) {
+    constructor(data, rendered) {
         super()
         this.data = data; 
-        this.obj_z = obj_z;       
+        this.rendered = rendered;       
     }
 
     build() {

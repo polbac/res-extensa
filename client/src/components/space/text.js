@@ -6,15 +6,17 @@ export const TEXT_ITEM_TYPE = 'text'
 const IMAGE_WIDTH = 35;
 
 export class TextItem extends ItemBase{
-    constructor(data, obj_z) {
+    constructor(data, rendered) {
         super()
         this.data = data; 
-        this.obj_z = obj_z;       
+        this.rendered = rendered;       
     }
 
     build() {
         const image = `http://ee.testeando.website/image-generator.php?title=${this.data.title.toUpperCase()}&body=${this.data.subtitle}`
         this.map = new THREE.TextureLoader().load(image);
+        this.map.anisotropy = this.rendered.getMaxAnisotropy();
+        this.map.minFilter = THREE.LinearFilter;
         this.material = new THREE.SpriteMaterial( { map: this.map, color: 0xffffff } );
         this.sprite = new THREE.Sprite( this.material );
         this.image = new Image()

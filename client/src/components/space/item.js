@@ -5,7 +5,7 @@ import { ModelItem, MODEL_ITEM_TYPE } from './model'
 import { SoundItem, SOUND_ITEM_TYPE } from './sound'
 
 export class ItemFactory {
-    constructor(data) {
+    constructor(data, rendered) {
         this.data = data
         this.types = {
             [TEXT_ITEM_TYPE]: TextItem,
@@ -15,7 +15,7 @@ export class ItemFactory {
             [SOUND_ITEM_TYPE]: SoundItem,
         };
 
-        this.item = new this.types[data.type](data)
+        this.item = new this.types[data.type](data, rendered)
         this.item.build()
         return this.item
     }

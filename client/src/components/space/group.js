@@ -7,10 +7,11 @@ const COORDINATE_VELOCITY = .01
 const MAX_VALUE = 9999999999
 const MIN_VALUE = -9999999999
 export class SpaceGroup {
-    constructor(data, scene, z) {
+    constructor(data, scene, z, renderer) {
         this.z = Number(z)
         this.SIZE = [45, 20];
         this.data = data;
+        this.renderer = renderer;
         this.scene = scene;
         this.matrix = create2Darray(this.data)
         this.items = [];
@@ -37,7 +38,7 @@ export class SpaceGroup {
 
       this.matrix = this.matrix.map((row, x) => {
         return row.map((item, y) => {
-          const itemFactory = new ItemFactory(item)
+          const itemFactory = new ItemFactory(item, this.renderer)
           itemFactory.setX(x * this.getCanvasWidth());
           itemFactory.setY(-y * this.getCanvasHeight());
           //itemFactory.setZ(this.z * -10);
