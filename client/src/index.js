@@ -13,10 +13,10 @@ import { createNavigation } from './components/nav/nav'
 
 const EventEmitter = require('events')
 global.eventEmitter = new EventEmitter()
-console.log('HOLA123')
+
 require('./styles/main.css')
 
-const router = new Navigo('http://localhost:3000/', false);
+const router = new Navigo(null, false);
 
 let page = null;
 
@@ -28,34 +28,37 @@ const gotoPage = Section => {
   page = new Section(router)
 }
 
-router
-  .on('/', function () {
-    gotoPage(Landing)
-  })  
-  .on('random', function () {
-    gotoPage(Random)
-  })
-  .on('chronological', function () {
-    gotoPage(Chronological)
-  })
-  .on('extracts', function () {
-    gotoPage(Extracts)
-  })
-  .on('about', function () {
-    gotoPage(About)
-  })
-  .on('text/:slug', function () {
-    gotoPage(Text)
-  })
-  .on('sound/:sound', function () {
-    gotoPage(Sound)
-  })
-  .on('video/:slug', function () {
-    gotoPage(Video)
-  })
-  .on('image/:slug', function () {
-    gotoPage(Image)
-  })
-  .resolve();
+window.onload = () => {
+  
+  router
+    .on('random', function () {
+      gotoPage(Random)
+    })
+    .on('chronological', function () {
+      gotoPage(Chronological)
+    })
+    .on('extracts', function () {
+      gotoPage(Extracts)
+    })
+    .on('about', function () {
+      gotoPage(About)
+    })
+    .on('text/:slug', function () {
+      gotoPage(Text)
+    })
+    .on('sound/:sound', function () {
+      gotoPage(Sound)
+    })
+    .on('video/:slug', function () {
+      gotoPage(Video)
+    })
+    .on('image/:slug', function () {
+      gotoPage(Image)
+    })
+    .on(function () {
+      gotoPage(Landing)
+    })  
+    .resolve();
 
-  createNavigation(router)
+    createNavigation(router)
+}

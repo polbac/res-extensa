@@ -6,7 +6,7 @@ export class Chronological extends Base{
         super(
             router,
             'chronological',
-            'http://ee.testeando.website/index.php/content',
+            '//ee.testeando.website/index.php/content',
         )
     }
 

@@ -29,7 +29,11 @@ const path = require('path');
      new CleanWebpackPlugin(),
      new HtmlWebpackPlugin({
        title: 'RES EXTENSA',
-       filename:'./src/index.html'
+       template:'./public/index.html',
+       inject: false,
+       templateParameters: {
+        'bundle_path': '../dist'
+      },
      }),
    ],
    output: {
