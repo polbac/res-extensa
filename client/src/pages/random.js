@@ -40,12 +40,16 @@ export class Random extends Base{
         this.renderer.setClearColor(0xf2f2f2);
         
         this.renderer.setSize( window.innerWidth, window.innerHeight );
-        this.camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 1000 );
+        this.camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 2000 );
         this.scene = new THREE.Scene();
-        this.ambient = new THREE.AmbientLight( 0xffffff );
+        const ambientLight = new THREE.AmbientLight( 0xcccccc, 0.4 );
+        this.scene.add( ambientLight );
+
+        const pointLight = new THREE.PointLight( 0xffffff, 0.8 );
+        this.camera.add( pointLight );
         this.raycaster = new THREE.Raycaster()
         this.mouse = new THREE.Vector2();
-
+        
         
         this.counter = 0
 
