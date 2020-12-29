@@ -22,19 +22,22 @@ export class ModelItem extends ItemBase{
     modelLoaded() {
         this.object.traverse( ( child ) => {
             if ( child.isMesh ) {
-                console.log('this.textureLoaded',this.textureLoaded)
                 child.material.map = this.textureLoaded;
             }
-            this.object.scale.set( 0.075, 0.075, 0.075 )
-            this.group.z = 20
-            this.group.add(this.object)
             
-            this.position()
+            
+            
+            this.positionAndAdd()
         } );
     }
 
-    position() {
+    positionAndAdd() {
+        const scale = this.data.scale || 1
+        this.object.scale.set( 0.075 * scale, 0.075* scale, 0.075 * scale)
+        this.object.position.y = -10
+        this.group.z = 20
         
+        this.group.add(this.object)
     }
 
     build() {
@@ -54,7 +57,14 @@ export class ModelItem extends ItemBase{
 
         loader.load( this.object, ( obj ) => {
             this.object = obj
-            this.loadTexture()
+            
+            if (this.texture) {
+                this.loadTexture()
+                return
+            }
+
+            this.positionAndAdd()
+            
         }, progress => {
             /* console.log(progress) */
         }, error => {
