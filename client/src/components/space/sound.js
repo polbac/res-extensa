@@ -1,98 +1,140 @@
 import * as THREE from 'three';
 import{ ItemBase } from './item-base'
+import { uuidv4 } from '../../utils/uuid'
+import $ from 'jquery'
 
 export const SOUND_ITEM_TYPE = 'sound'
-const IMAGE_WIDTH = 25;
+const IMAGE_HEIGHT = 2.5;
 
 export class SoundItem extends ItemBase{
-    constructor(data, obj_z) {
+    constructor(data, rendered) {
         super()
         this.data = data; 
-        this.obj_z = obj_z;       
+        this.rendered = rendered;       
+        this.loaded = false
+        this.marqueX = 0
+    }
+
+    createMarqueeCanvas(idDOMElement) {
+        const idElement = uuidv4()
+        const mult = 50
+        const width = (IMAGE_HEIGHT * 6) * mult
+        const height = IMAGE_HEIGHT * mult
+    
+        
+        this.ctx = document.createElement('canvas').getContext('2d');
+
+        this.ctx.canvas.width = width;
+        this.ctx.canvas.height = height;
+
+        this.ctx.fillStyle = "#f2f2f2";
+        this.ctx.fillRect(0, 0, width, height);
+
+
+        this.image = new Image()
+        this.image.height = height
+        this.image.crossOrigin = "anonymous";
+        this.image.onload = () => {
+            this.ctx.drawImage(this.image, 0, 30);    
+
+            this.canvasTexture = new THREE.CanvasTexture(this.ctx.canvas);
+            this.canvasTexture.anisotropy = this.rendered.getMaxAnisotropy();
+            this.canvasTexture.minFilter = THREE.LinearFilter;
+
+            this.textMaterial = new THREE.MeshBasicMaterial( {
+                map: this.canvasTexture,
+            }); 
+
+            const geometry = new THREE.BoxGeometry(IMAGE_HEIGHT * 6, IMAGE_HEIGHT, 0);
+
+            this.textMesh = new THREE.Mesh(geometry, this.textMaterial);
+            this.textMesh.position.x = IMAGE_HEIGHT * 2.5
+            this.group.add(this.textMesh)
+
+            this.loaded = true
+
+            this.borderGeometry = new THREE.BoxGeometry( IMAGE_HEIGHT * 6, IMAGE_HEIGHT, 0 );
+            this.edges = new THREE.EdgesGeometry( this.borderGeometry );
+            this.line = new THREE.LineSegments( this.edges, new THREE.LineBasicMaterial( { color: 0x000000, linewidth: 3  } ) );
+            this.line.position.x = IMAGE_HEIGHT * 2.5
+            this.group.add(this.line)
+        }
+
+        this.image.src = `http://ee.testeando.website/one-line.php?text_2=${this.data.author}&text_1=${this.data.title}`
+        
+        
+        
     }
 
     build() {
-        const image = `http://ee.testeando.website/one-line.php?text_1=${this.data.title.toUpperCase()}&text_2=${this.data.author}`
-        this.map = new THREE.TextureLoader().load(image);
-        this.map.userData = {
-            fitTo : 1
-        };
-        this.map.wrapS = THREE.RepeatWrapping;
-        this.map.wrapT = THREE.RepeatWrapping;
+        this.group = new THREE.Group();
+        this.createMarqueeCanvas()
 
-        this.material = new THREE.MeshPhongMaterial( {
-            color: 0x00ffff, 
-            flatShading: true,
-            transparent: false,
-            opacity: 0.7,
-            map: this.map
-        }); 
 
-        this.geometry = new THREE.BoxGeometry( 1, 5, 2 );
-        this.box = new THREE.Mesh( this.geometry, this.material );
-        meshFitUvMap(this.box);
+        /* ICON */
+        const icon = 'images/sound-icon.jpg'
+        this.iconMap = new THREE.TextureLoader().load(icon);
+        this.iconMaterial = new THREE.SpriteMaterial( { map: this.iconMap, color: 0xffffff } );
+        this.iconSprite = new THREE.Sprite( this.iconMaterial );
+        this.iconSprite.scale.set(IMAGE_HEIGHT, IMAGE_HEIGHT, 1);    
+        this.group.add(this.iconSprite)
+
+
+        /* BORDER */
+        
+        
+        //this.image.src = image
+        //this.sprite._data = this.data
 
         
 
-        this.material = new THREE.SpriteMaterial( { map: this.map, color: 0xffffff } );
-        this.sprite = new THREE.Sprite( this.material );
-        this.image = new Image()
-        this.image.onload = () => {
-            this.sprite.scale.set(IMAGE_WIDTH, IMAGE_WIDTH, 1);    
-        }
+        this.iteractiveAreaGeo = new THREE.PlaneGeometry(
+            20, 
+            10,
+            32
+        );
 
-        
-        this.image.src = image
-        this.sprite._data = this.data
-        console.log(this.sprite)
+
+        this.iteractiveAreaMaterial = new THREE.MeshPhongMaterial({
+            opacity: 0,
+            transparent: true,
+          });
+        this.iteractiveAreaMesh = new THREE.Mesh(this.iteractiveAreaGeo, this.iteractiveAreaMaterial);
+
+        this.iteractiveAreaMesh.position.x = IMAGE_HEIGHT * 2.5
+        this.group.add(this.iteractiveAreaMesh)
+
+        this.iteractiveAreaMesh._data = this.data
     }
 
     getItem() {
-        return this.sprite
+        return this.group
     }
 
     getItemDetectMouse() {
-        return this.sprite
+        return this.iteractiveAreaMesh
     }
 
     render() {
-        this.map.offset.x += 0.001
+        if (this.loaded) {
+            const mult = 50
+
+            const width = (IMAGE_HEIGHT * 6) * mult
+            const height = IMAGE_HEIGHT * mult
+            
+            this.marqueX -= 2
+
+            if (this.marqueX < 0 - this.image.width) {
+                this.marqueX = width
+            }
+
+            
+            
+            this.ctx.fillStyle = "#f2f2f2";
+            this.ctx.fillRect(0, 0, width, height);
+            this.ctx.drawImage(this.image, this.marqueX, 30);    
+            this.canvasTexture.needsUpdate = true
+        }
+        //this.map.offset.x += 0.001
     }
 }
-
-function meshFitUvMap(mesh) {
-  
-    if (mesh.geometry && 
-        mesh.material && 
-        mesh.material.map && 
-        mesh.material.map.userData && 
-        mesh.material.map.userData.fitTo > 0) {
-      
-        
-       var geometry = mesh.geometry;
-       var textureFitTo = mesh.material.map.userData.fitTo; 
-       var faces = mesh.geometry.faces;
-      
-        for (var i = 0, len = faces.length; i < len; i ++) {
-        var face = faces[i];
-        var uv = geometry.faceVertexUvs[0][i];
- 
-        var components = ['x', 'y', 'z'].sort(function(a, b) {
-           return Math.abs(face.normal[a]) > Math.abs(face.normal[b]);
-        });
-      
-      var v1 = mesh.geometry.vertices[face.a];
-      var v2 = mesh.geometry.vertices[face.b];
-      var v3 = mesh.geometry.vertices[face.c];
-      
-      var newUv0 = new THREE.Vector2(v1[components[0]] / textureFitTo, v1[components[1]] / textureFitTo);
-      var newUv1 = new THREE.Vector2(v2[components[0]] / textureFitTo, v2[components[1]] / textureFitTo);
-      var newUv2 = new THREE.Vector2(v3[components[0]] / textureFitTo, v3[components[1]] / textureFitTo);
- 
-        uv[0].copy(newUv0);
-        uv[1].copy(newUv1);
-        uv[2].copy(newUv2);
- 
-        }
-    }
- }

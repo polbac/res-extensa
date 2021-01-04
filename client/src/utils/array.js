@@ -4,8 +4,7 @@ export function arrayDivider(array, number) {
     const itemsPerArea = Math.floor(array.length / number);
     const newArray = [];
     let pos = 0;
-    let index = 0;
-    array = array.filter(item => item.type !== "sound")
+
     array.forEach((item, i) => {
         if (!newArray[pos]) {
             newArray[pos] = [];
@@ -18,7 +17,6 @@ export function arrayDivider(array, number) {
             index = 0;
         }
         
-        index++;
     });
 
     return newArray

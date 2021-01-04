@@ -1,15 +1,15 @@
 <div id="chrono-content">
-    
-        {{#each items}}
-            <div class="project-row">
-                <date>{{date}}</date>
-                <div class="project">
-                    <title>{{title}}</title>
-                    <author>{{author}}</author>
-                </div>
-                <a href="{{type}}/{{slug}}" class="row-link"></a>
-                <a href="#" class="category">{{type}}</a>
-            </div>
-        {{/each}}
-        
+
+    {{#each items}}
+    <div class="project-row">
+        <date>{{date}}</date>
+        <div class="project">
+            <title>{{title}}</title>
+            <author>{{author}}</author>
+        </div>
+        <a href="/{{type}}/{{slug}}" class="row-link"></a>
+        <a href="#" class="category">{{type}}</a>
+    </div>
+    {{/each}}
+
 </div>

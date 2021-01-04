@@ -10,6 +10,7 @@ import { Video } from './pages/video'
 import { Text } from './pages/text'
 
 import { createNavigation } from './components/nav/nav'
+import { createSearch } from './components/nav/search'
 
 const EventEmitter = require('events')
 global.eventEmitter = new EventEmitter()
@@ -29,36 +30,40 @@ const gotoPage = Section => {
 }
 
 window.onload = () => {
-  
   router
-    .on('random', function () {
+    .on('/random', function () {
       gotoPage(Random)
     })
-    .on('chronological', function () {
+  router.on('/chronological', function () {
       gotoPage(Chronological)
     })
-    .on('extracts', function () {
+  router.on('/extracts', function () {
       gotoPage(Extracts)
     })
-    .on('about', function () {
+  router.on('/about', function () {
       gotoPage(About)
     })
-    .on('text/:slug', function () {
+  router.on('/text/*', function () {
       gotoPage(Text)
     })
-    .on('sound/:sound', function () {
+  router.on('/sound/*', function () {
+      console.log('so')
       gotoPage(Sound)
     })
-    .on('video/:slug', function () {
+  router.on('/video/*', function () {
       gotoPage(Video)
     })
-    .on('image/:slug', function () {
+  router.on('/image/*', function () {
       gotoPage(Image)
     })
-    .on(function () {
+
+  router.on(function (a) {
       gotoPage(Landing)
     })  
-    .resolve();
+  
+  router.resolve()
+    
 
     createNavigation(router)
+    createSearch(router)
 }

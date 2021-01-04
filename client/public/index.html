@@ -55,6 +55,53 @@
     overscroll-behavior-x: none;
   }
 
+  #search{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99999999;
+    backdrop-filter: blur(6px);
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    display: none;
+  }
+  #search .search-wrapper{
+    width: 90%;
+    background: rgb(178,136,255);
+    background: linear-gradient(333deg, rgba(178,136,255,1) 0%, rgba(255,255,255,1) 100%);
+  }
+  #search input{
+    width: 100%;
+    font-size: 20px;
+    text-transform: uppercase;
+    border: none;
+    background: transparent;
+    background: transparent;
+    padding: 10px;
+    font-size: 33px;
+    outline: 0;
+    font-family: 'Favorit Pro Light';
+  }
+
+  #search #results{
+    max-height: 200px;
+    overflow: scroll;
+  }
+
+  .result-search-item{
+    padding: 10px;
+    font-family: 'Favorit Pro Light';
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 30px;
+    color: #9d9e9d;
+    letter-spacing: 2px;
+    display: block;
+  }
+
 </style>
 </head>
 <body>
@@ -72,6 +119,13 @@
   </nav>
   <section id="section"></section>  
 </main>
+
+<div id="search">
+  <div class="search-wrapper">
+    <input id="search-input" placeholder="SEARCH:"/>
+    <div id="results"></div>
+  </div>
+</div>
 
 <noscript>
   You need to enable JavaScript to run this app.

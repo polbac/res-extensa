@@ -36,7 +36,7 @@ export class Base {
     bindLinks() {
         $('#section a').on('click', (event) => {
             event.preventDefault()
-            this.router.navigate($(event.target).attr("href"))
+            this.router.navigate($(event.target).attr("href"), true)
             return false
         })
     }

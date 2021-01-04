@@ -36,8 +36,11 @@ export class Random extends Base{
         this.currentOver = null
         this.userControl = new UserControl()
         const areas =  arrayDivider(this.data, 1)
-        this.renderer = new THREE.WebGLRenderer({alpha: true });
+        this.renderer = new THREE.WebGLRenderer({
+            alpha: true,
+         });
         this.renderer.setClearColor(0xf2f2f2);
+        this.renderer.localClippingEnabled = true;
         
         this.renderer.setSize( window.innerWidth, window.innerHeight );
         this.camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 2000 );

@@ -23,13 +23,13 @@ try{
     $color = imagecolorallocatealpha($im, 0, 0, 0, 127);
     imagefill($im, 0, 0, $color);
 
-    imagettftext($im, 60, 0, 0, 55, 
+    imagettftext($im, 60, 0, 0, 60, 
         imagecolorallocate($im, $FONT_COLOR[0], $FONT_COLOR[1], $FONT_COLOR[2]),
         $FONT_1,
         $text_1
     );        
 
-    imagettftext($im, 60, 0, $text_1_box[4] + 20, 55, 
+    imagettftext($im, 60, 0, $text_1_box[4] + 20, 60, 
         imagecolorallocate($im, $FONT_COLOR[0], $FONT_COLOR[1], $FONT_COLOR[2]),
         $FONT_2,
         $text_2
