@@ -33,6 +33,7 @@ export class Random extends Base{
     }
 
     show() {
+        this.active = true
         this.currentOver = null
         this.userControl = new UserControl()
         const areas =  arrayDivider(this.data, 1)
@@ -97,7 +98,7 @@ export class Random extends Base{
     }
 
     click() {
-        if(this.currentOver) {
+        if(this.currentOver && this.active) {
             const { type, slug } = this.currentOver.object._data
             this.router.navigate(`${type}/${slug}`)
         }
@@ -144,7 +145,12 @@ export class Random extends Base{
         
     }
 
+    resize() {
+        this.renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+
     destroy() {
+        this.active = false
         document.querySelector('body').style.cursor = 'initial'
         cancelAnimationFrame(this.idAnimationFrame)
         this.renderer.renderLists.dispose()

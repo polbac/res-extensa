@@ -67,3 +67,9 @@ window.onload = () => {
     createNavigation(router)
     createSearch(router)
 }
+
+window.onresize = () => {
+  if (page.resize) {
+    page.resize()
+  }
+}

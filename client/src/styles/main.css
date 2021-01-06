@@ -201,6 +201,7 @@ nav #menu a#search-button:hover:after {
     
 }
 
+nav.landing,
 nav.random{
     background: transparent;
     border-bottom: 0;
@@ -230,4 +231,9 @@ nav.random{
     text-align: center;
     padding-top: 30px;
     box-sizing: border-box;
+}
+
+.section-landing{
+    background: rgb(251,205,207);
+    background: linear-gradient(180deg, rgba(251,205,207,1) 0%, rgba(242,246,237,1) 100%);
 }

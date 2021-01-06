@@ -851,6 +851,11 @@
   dependencies:
     commander "^2.15.1"
 
+"@interactjs/types@1.10.2":
+  version "1.10.2"
+  resolved "https://registry.yarnpkg.com/@interactjs/types/-/types-1.10.2.tgz#45a74d019f9b3e8fccd3ccc288b55bcf510106bc"
+  integrity sha512-l0T1bU8OHRv716ztQOYwP+K7b/lA76C0T3r/cdabbUv6CKeAFdFRRFlmNxYOM36SxMGWAiq5VWrN3SeXlB7Fow==
+
 "@nodelib/fs.scandir@2.1.3":
   version "2.1.3"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.3.tgz#3a582bdb53804c6ba6d146579c46e52130cf4a3b"
@@ -2321,10 +2326,46 @@ detect-file@^1.0.0:
   resolved "https://registry.yarnpkg.com/detect-file/-/detect-file-1.0.0.tgz#f0d66d03672a825cb1b73bdb3fe62310c8e552b7"
   integrity sha1-8NZtA2cqglyxtzvbP+YjEMjlUrc=
 
+detect-hover@^1.0.0:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/detect-hover/-/detect-hover-1.0.3.tgz#7392507cbced1bedc9f129a56b197c1eef9076c3"
+  integrity sha512-HtLoY+tClgYucJNiovNICGWFp9nOGVmHY44s7L62iPqORXM9vujeWFaVcqtA7XRvp/2Y+4RBUfHbDKFGN+xxZQ==
+
+detect-it@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/detect-it/-/detect-it-1.1.0.tgz#37ad0548e2509c5c70338dfa2d5212e2201f1cf1"
+  integrity sha1-N60FSOJQnFxwM436LVIS4iAfHPE=
+  dependencies:
+    detect-hover "^1.0.0"
+    detect-passive-events "^1.0.0"
+    detect-pointer "^1.0.0"
+    detect-pointer-events "^1.0.0"
+    detect-touch-events "^1.0.0"
+
 detect-node@^2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/detect-node/-/detect-node-2.0.4.tgz#014ee8f8f669c5c58023da64b8179c083a28c46c"
   integrity sha512-ZIzRpLJrOj7jjP2miAtgqIfmzbxa4ZOr5jJc601zklsfEx9oTzmmj2nVpIPRpNlRTIh8lc1kyViIY7BWSGNmKw==
+
+detect-passive-events@^1.0.0:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/detect-passive-events/-/detect-passive-events-1.0.5.tgz#ce324db665123bef9e368b8059ff95d95217cc05"
+  integrity sha512-foW7Q35wwOCxVzW0xLf5XeB5Fhe7oyRgvkBYdiP9IWgLMzjqUqTvsJv9ymuEWGjY6AoDXD3OC294+Z9iuOw0QA==
+
+detect-pointer-events@^1.0.0:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/detect-pointer-events/-/detect-pointer-events-1.0.2.tgz#0e3ad58611d63ff40b6fff0ec5ac5e8735dfbda4"
+  integrity sha512-yf04kXITjVuIiurhU9g9Xt3tvnQG3/vPHZmeHSRpST/1p0KkDRupGHOM1emX3DoRl6nMIXAy+7zgaYuC59231g==
+
+detect-pointer@^1.0.0:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/detect-pointer/-/detect-pointer-1.0.3.tgz#27d86d0837951e6c5a0785c8a7fddd9cf5754e08"
+  integrity sha512-d0o/Puo3fiGSCXy6H039h9Kwz+mmYCGKZ/qtPFnpN3WfsumjC1C9b5KKvRu+aYnfdI8peqN/iAe7dPd85qIt2g==
+
+detect-touch-events@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/detect-touch-events/-/detect-touch-events-1.0.1.tgz#115584aab7409c0b92df103ab0fbf5285cd50d71"
+  integrity sha1-EVWEqrdAnAuS3xA6sPv1KFzVDXE=
 
 diff@^4.0.1:
   version "4.0.2"
@@ -3703,6 +3744,13 @@ ini@~1.3.0:
   version "1.3.8"
   resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.8.tgz#a29da425b48806f34767a4efce397269af28432c"
   integrity sha512-JV/yugV2uzW5iMRSiZAyDtQd+nxtUnjeLt0acNdw98kKLrvuRVyB80tsREOE7yvGVgalhZ6RNXCmEHkUKBKxew==
+
+interactjs@^1.10.2:
+  version "1.10.2"
+  resolved "https://registry.yarnpkg.com/interactjs/-/interactjs-1.10.2.tgz#b8efa1ecc72fd3e3b8da32ce5082df308b318ba1"
+  integrity sha512-5tj+4k0jtIzUj4TeLp4+F4VUAHXzQHnXfFwuaUsU1pnfRXiP3EqawsUpAn7gfAOS6Ltj6EQvvurCN9GJn/G/Pw==
+  dependencies:
+    "@interactjs/types" "1.10.2"
 
 internal-ip@^4.3.0:
   version "4.3.0"
@@ -6160,6 +6208,13 @@ terser@^4.1.2, terser@^4.6.3:
     commander "^2.20.0"
     source-map "~0.6.1"
     source-map-support "~0.5.12"
+
+the-listener@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/the-listener/-/the-listener-1.1.1.tgz#e7543bdcb6ce43317abed02dbc445828f0e7e37c"
+  integrity sha512-gpT8hme41Obk5mSrBrcN+mQ4DXa8EcoS7bLnVrzLtdX7V9cM3xeluO22xplrOTnOA/ufRckwVeEj9hutPzmE6g==
+  dependencies:
+    detect-it "^1.1.0"
 
 three-vignette-background@^1.0.3:
   version "1.0.3"
