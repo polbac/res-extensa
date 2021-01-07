@@ -36,11 +36,17 @@ export class Landing  extends Base{
 
         $("body").addClass("section-landing")
 
-        
+        let loaded = 0
 
         this.loader.load('res-extensa.obj', (object) => {
             object.traverse( (child) => {
-                
+                loaded++
+                console.log(loaded)
+                if (loaded >= 2) {
+                    $("#preloader").hide()
+                } else{
+                    $("#preloader").show()
+                }
                 child.material =  new THREE.MeshStandardMaterial( { 
                     color: 0xffffff
                 } );
@@ -107,7 +113,7 @@ export class Landing  extends Base{
             this.res = object
             this.scene.add( this.res );
             //this.camera.lookAt(this.scene.position);
-            $("#preloader").hide()
+            
         
         }, undefined, function ( error ) {
             console.error( error );

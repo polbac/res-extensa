@@ -7,8 +7,11 @@ export class Image extends Base{
         super(
             router, 
             'image',
-            `http://ee.testeando.website/index.php/image?slug=${getLastUrlPath()}`
+            `http://ee.testeando.website/index.php/image?slug=${getLastUrlPath()}`,
+            true,
+            'image'
         )
+        
     }
 
     mapData(data) {
