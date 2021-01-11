@@ -4,6 +4,7 @@ import ExtractsManager from '../manager/extracts'
 import { validateEmail } from '../utils/email'
 import { SAVE_EMAIL } from '../config'
 import { downloadHTML } from '../utils/download-html'
+import { downloadPdf } from '../utils/download-pdf'
 export class Extracts extends Base{
 
     constructor(router) {
@@ -48,11 +49,15 @@ export class Extracts extends Base{
     }
 
     download() {
-        const format = $(".download-format[checked]").val()
+        const format = $(".download-format:checked").val()
         const extracts = ExtractsManager.getExtracts()
-        
+        console.log('format',$(".download-format[checked]"))
         if (format === "html") {
             downloadHTML(extracts)
+        }
+
+        if (format === "pdf") {
+            downloadPdf(extracts)
         }
     }
 

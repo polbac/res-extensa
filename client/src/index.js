@@ -1,4 +1,6 @@
 import Navigo from 'navigo';
+import 'babel-polyfill';
+
 import { Random } from './pages/random'
 import { Chronological } from './pages/chronological'
 import { Extracts } from './pages/extracts'
@@ -11,6 +13,7 @@ import { Text } from './pages/text'
 
 import { createNavigation } from './components/nav/nav'
 import { createSearch } from './components/nav/search'
+
 
 const EventEmitter = require('events')
 global.eventEmitter = new EventEmitter()
