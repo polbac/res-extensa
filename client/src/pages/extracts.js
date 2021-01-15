@@ -51,7 +51,7 @@ export class Extracts extends Base{
     download() {
         const format = $(".download-format:checked").val()
         const extracts = ExtractsManager.getExtracts()
-        console.log('format',$(".download-format[checked]"))
+
         if (format === "html") {
             downloadHTML(extracts)
         }

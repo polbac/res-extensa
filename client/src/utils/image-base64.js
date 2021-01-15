@@ -47,7 +47,9 @@ function parseImage(image) {
             const dataUrl = getBase64Image(event.currentTarget, type);
             resolve({
                 ...image,
-                image: dataUrl
+                image: dataUrl,
+                width: img.width,
+                height: img.height,
 
             })
          });
