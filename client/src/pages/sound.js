@@ -7,7 +7,10 @@ export class Sound extends Base{
         super(
             router, 
             'sound',
-            `http://ee.testeando.website/index.php/sound?slug=${getLastUrlPath()}`)
+            `http://ee.testeando.website/index.php/sound?slug=${getLastUrlPath()}`,
+            true,
+            'sound'
+        )
     }
 
     mapData(data) {

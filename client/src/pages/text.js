@@ -7,7 +7,10 @@ export class Text extends Base{
         super(
             router, 
             'text',
-            `http://ee.testeando.website/index.php/text?slug=${getLastUrlPath()}`)
+            `http://ee.testeando.website/index.php/text?slug=${getLastUrlPath()}`,
+            true,
+            'text'
+        )
     }
 
     mapData(data) {

@@ -8,7 +8,10 @@ export class Video extends Base{
         super(
             router, 
             'video',
-            `http://ee.testeando.website/index.php/video?slug=${getLastUrlPath()}`)
+            `http://ee.testeando.website/index.php/video?slug=${getLastUrlPath()}`,
+            true,
+            'video'
+        )
     }
 
     destroy() {

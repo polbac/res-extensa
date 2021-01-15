@@ -4,53 +4,78 @@
 
         <title>EXTRACTS</title>
         <subtitle>FILES</subtitle>
-        <text>8 Items</text>
+        <text>{{extracts.length}} Items</text>
 
         <div id="boxes">
-            <label><input type="checkbox" class="box"><text>html</text></label>
-            <label><input type="checkbox" class="box" value="first_checkbox"><text>.pdf</text></label>
-            <label><input type="checkbox" class="box" value="first_checkbox"><text>I agree to the terms and conditions</text></label>
+            <label><input type="radio" class="box download-format" name="format" value="html"><text>html</text></label>
+            <label><input type="radio" class="box download-format" name="format" value="pdf"
+                    checked><text>.pdf</text></label>
+            <label><input id="conditions" type="checkbox" class="box" name="conditions"><text>I agree to the terms and
+                    conditions</text></label>
         </div>
 
-        <input type="text" class="email" value="email">
-        <subtitle>DOWNLOAD</subtitle>
+        <input type="text" class="email" id="email" placeholder="Type your email...">
+        <button id="download">DOWNLOAD</button>
+
+        <div class="errors"></div>
 
         <div id="terms">
             TERMS AND CONDITIONS <br /><br />
-            A&#41; Terms and Conditions agreement is the agreement that includes the terms, the rules and the guidelines of acceptable behavior and other useful sections to which users must agree in order to use or access your website and mobile app.
+            A&#41; Terms and Conditions agreement is the agreement that includes the terms, the rules and the guidelines
+            of acceptable behavior and other useful sections to which users must agree in order to use or access your
+            website and mobile app.
         </div>
     </div>
 
     <div class="col-right">
-
+        {{#each extracts}}
         <div class="row img">
-            <category>Image</category>
-            <img src="images/extracts-1.jpg"/>
-            <div class="epigraph">
-                FIGURE 1. John Baldessari, Wrong (1966–68). The subject is placed directly in front of a palm tree so it appears to be sprouting from his head. Courtesy of John Baldessari.
-            </div>
-        </div>
+            <category>{{type}}</category>
 
-        <div class="row text">
-            <category>Text</category>
-            <div class="title">
-                THE EPISTEMOLOGY OF 0 SEARCH
-            </div>
+            {{#ifEquals type 'image'}}
+            <button class='delete-button' slug="{{slug}}">delete</button>
+            <img src="{{images.0.col_id_11}}" />
             <div class="epigraph">
-                An interview with David Joselit Architecture after the 'Era of Art.'
-                Read more
+                {{images.0.col_id_12}}
             </div>
-        </div> 
+            {{/ifEquals}}
 
-        <div class="row img">
-            <category>Image</category>
-            <img src="images/extracts-2.jpg"/>
+            {{#ifEquals type 'video'}}
+            <button class='delete-button' slug="{{slug}}">delete</button>
+            <video autoplay muted loop src="{{video}}" width="100%" />
             <div class="epigraph">
-                FIGURE 2. Andrew Benson, Status Update, 2am (2011). Color video, 36 seconds. Portrait of the artist awake at his computer at 2 a.m. Courtesy of Andrew Benson.
+                {{title}}
             </div>
+            {{/ifEquals}}
+
+            {{#ifEquals type 'text'}}
+            <button class='delete-button' slug="{{slug}}">delete</button>
+            <div class="epigraph">
+                {{title}}
+            </div>
+            <div class="body">
+                {{{author}}}
+            </div>
+            {{/ifEquals}}
+
+            {{#ifEquals type 'sound'}}
+            <button class='delete-button' slug="{{slug}}">delete</button>
+            <img src="{{images.0.col_id_11}}" />
+            <div class="epigraph">
+                {{title}}
+            </div>
+
+            {{/ifEquals}}
+
+
+
         </div>
-        
+        {{else}}
+        <div style='margin-top: 100px;text-align: center;'>IS EMPTY</div>
+        {{/each}}
+
+
     </div>
-    </div>
+</div>
 
 </div>
