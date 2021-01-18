@@ -25,6 +25,8 @@ const TYPE_STRATEGY_CREATOR = {
     'image': addImage,
 }
 
+let firstPage = true
+
 export function downloadPdf(_extracts) {
     $("#preloader").show()
 
@@ -40,13 +42,14 @@ export function downloadPdf(_extracts) {
                 .then(async extracts => {
                     const doc = new jsPDF({
                         unit: 'px',
+                        format: [PAGE_WIDTH, PAGE_HEIGHT], 
+                        orientation: FORMAT_ORIENTATION
                     });
                     var filename = `extracts-${uuidv4()}.pdf`;
                     
                     loadFonts(doc)
                     
                     for await (const extract of extracts) {
-                        console.log(extract)
                         await TYPE_STRATEGY_CREATOR[extract.type](doc, extract)
                     }
 
@@ -90,8 +93,9 @@ function addLogoHeader(page){
 
 function addText(doc, extract){
     return new Promise(async resolve => {
-        let textPage = addPage(doc)
-        
+        let textPage = firstPage ? doc : addPage(doc)
+        firstPage = false
+
         await addLogoHeader(textPage)
         
         let y = MARGIN_TOP
@@ -158,6 +162,7 @@ function addText(doc, extract){
         let col2Y = MARGIN_TOP
         let currentColum = 1
         const IMAGE_WIDTH = (PAGE_WIDTH - (MARGIN_HORIZONTAL*2) - 10) / 2
+        
         const MAX_Y = PAGE_HEIGHT - 20
 
         textPage = addPage(doc)
@@ -167,25 +172,53 @@ function addText(doc, extract){
         images.forEach(({ width, height, image, col_id_12 }) => {
             const imageHeight = IMAGE_WIDTH / (width/height)
             const footerLines = doc.splitTextToSize(strippedString(col_id_12), IMAGE_WIDTH);
-            const totalBlock = imageHeight + (footerLines.length * 15) + 25
+            const totalBlockHeight = imageHeight + (footerLines.length * 15) + 25
             
             let ix, iy
 
             if (currentColum === 1) {
                 ix = MARGIN_HORIZONTAL
                 iy = col1Y
+                
+                if (iy + totalBlockHeight > MAX_Y) {
+                    iy = col2Y
+                    currentColum = 2
+
+                    if (iy + totalBlockHeight > MAX_Y) {
+                        textPage = addPage(doc)
+                        textImageHeader(textPage, extract)
+                        currentColum = 1
+                        col1Y = MARGIN_TOP
+                        col2Y = MARGIN_TOP
+                        iy = MARGIN_TOP
+                        ix = MARGIN_HORIZONTAL
+                    }
+                }
+
             } else {
                 ix = PAGE_WIDTH / 2 + 5 
                 iy = col2Y
+
+                if (iy + totalBlockHeight > MAX_Y) {
+                    iy = col1Y
+                    currentColum = 1
+
+                    if (iy + totalBlockHeight > MAX_Y) {
+                        textPage = addPage(doc)
+                        textImageHeader(textPage, extract)
+                        currentColum = 1
+                        col1Y = MARGIN_TOP
+                        col2Y = MARGIN_TOP
+                        iy = MARGIN_TOP
+                        ix = MARGIN_HORIZONTAL
+                    }
+                }
             }
 
             textPage.addImage(image, getFormat(image), ix, iy, IMAGE_WIDTH, imageHeight)
 
             iy += imageHeight + 25
 
-
-            
-           
             footerLines.forEach(line => {
                 textPage.setFont("Favorit");    
                 textPage.setFontSize(15);  
@@ -227,7 +260,8 @@ function textImageHeader(textPage, extract) {
 
 function addImage(doc, extract){
     return new Promise(async resolve => {
-        const imagePage = addPage(doc)
+        let imagePage = firstPage ? doc : addPage(doc)
+        firstPage = false
         await addLogoHeader(imagePage)
 
         let y = MARGIN_TOP
