@@ -11,30 +11,18 @@
 
         <div class="audio">
             <div class="play">
-                <button><img src="/play.svg" width="10" /></button>
+                <button id="audio-button"><img src="/play.svg" width="10" /></button>
                 <track>Anna Friz •Jeff Kolar</track>
             </div>
 
-            <time>00:00:00</time>
+            <time id='current-time'>00:00:00</time>
 
-            <audio controls
-                src="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3"></audio>
+            <div id="audio" src="{{audio}}"></div>
 
 
             <div class="tracklist">
                 <h3>Description</h3>
                 <p>{{tracklist}}</p>
-                1. Moondog - Bird´s Lament
-                <br />
-                2. Dirty Beaches - Lord Knows Best
-                <br />
-                3. Elvis - Tomorrow Night
-                <br />
-                4. Young Marble Giants - Eating Noddemix
-                <br />
-                5. Paul McCartney - Every Night
-                <br />
-                6. D.R. Hooker - Forge Your Own Chains
             </div>
 
         </div>

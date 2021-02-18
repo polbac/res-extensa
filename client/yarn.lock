@@ -819,6 +819,13 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
+"@babel/runtime@^7.9.2":
+  version "7.12.13"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.12.13.tgz#0a21452352b02542db0ffb928ac2d3ca7cb6d66d"
+  integrity sha512-8+3UMPBrjFa/6TtKi/7sehPKqfAm4g6K+YQjyyFOLUTxzOngcRZTlAVY8sc2CORJYqdHQY8gRPHmn+qo15rCBw==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
 "@babel/template@^7.10.4":
   version "7.10.4"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.10.4.tgz#3251996c4200ebc71d1a8fc405fba940f36ba278"
@@ -6754,6 +6761,18 @@ watchpack@^1.7.4:
   optionalDependencies:
     chokidar "^3.4.1"
     watchpack-chokidar2 "^2.0.0"
+
+waveplayer@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/waveplayer/-/waveplayer-1.2.4.tgz#01233a389b7e234d100c00eadf8325bbc52172b3"
+  integrity sha512-e7WkACaWJRy2PMzerYxETaBzMc58mqgDnhxcRJjImcr2iDUg7ky4sZpFXB2rURKD5QiLigVac9BYaCs8sL/pOw==
+  dependencies:
+    "@babel/runtime" "^7.9.2"
+
+wavesurfer.js@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/wavesurfer.js/-/wavesurfer.js-4.5.0.tgz#d029b77e14e2e4ec0827bda94d5ba182f4d7c736"
+  integrity sha512-yWSusLHwokPpTWwYjW5hhzGjyKfELLs0ss6GQuvRRrKKLtPd8A8wetveFzNXP0FJjaZ/baoFYX1h048CcCTNlA==
 
 wbuf@^1.1.0, wbuf@^1.7.3:
   version "1.7.3"
