@@ -125,9 +125,13 @@ nav #menu a#search-button:hover:after {
 
 /*ENTRIES NAV (ARROWS)*/
 .entries-nav {
-    pointer-events: none !important;
+    
 }
 
+.entries-nav #arrow-next,
+.entries-nav #arrow-prev{
+    cursor: pointer;
+}
 /*MOBILE*/
 @media (max-width:600px){
 

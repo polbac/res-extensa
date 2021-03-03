@@ -2,6 +2,8 @@ import $ from 'jquery'
 
 import ExtractsManager from '../manager/extracts'
 
+import {shuffle} from '../utils/array'
+import {mapIdChannelType} from '../utils/channel'
 
 export class Base {
     constructor(router, pageSlug, url, addToExtract = false, type) {
@@ -20,8 +22,6 @@ export class Base {
                 .then(res => res.json())
                 .then(content => {
                     let data = content
-                    
-                    
                     if (this.mapData) data = this.mapData(data)
                     this.data = data
                     $('#section').html(template({
@@ -33,6 +33,44 @@ export class Base {
                     window.scrollTo(0, 0)
                     this.bindLinks()
                     this.setAddToExtracts()
+
+                    const { categories } = content
+                    
+                    document.querySelector('.entries-nav #arrow-prev').style.display = 'none'
+                    document.querySelector('.entries-nav #arrow-next').style.display = 'none'
+                
+                    
+                    Object.keys(categories).forEach(category => {
+                        categories[category] = categories[category].filter(post => {
+                            return post.url != this.data.slug && post.channel_id !=10
+                        })
+                    })
+
+                    let posts = []
+
+                    Object.keys(categories).forEach(category => {
+                        categories[category].forEach(post => {
+                            posts.push(post)
+                        })
+                    })
+
+                    posts = shuffle(posts)
+
+                    
+                    const next = posts[0] || null
+                    const prev = posts[1] || null
+
+                    
+                    if (next) {
+                        document.querySelector('.entries-nav #arrow-next').setAttribute('href', `/${mapIdChannelType(next.channel_id)}/${next.url}`)
+                        document.querySelector('.entries-nav #arrow-next').style.display = 'block'
+                    }
+
+                    if (prev) {
+                        document.querySelector('.entries-nav #arrow-prev').setAttribute('href', `/${mapIdChannelType(prev.channel_id)}/${prev.url}`)
+                        document.querySelector('.entries-nav #arrow-prev').style.display = 'block'
+                    }
+
                     
                 })
                 return

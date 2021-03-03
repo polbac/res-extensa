@@ -24,11 +24,15 @@
 .entries-nav #arrow-prev {
     position: absolute;
     left: 1vw;
+    cursor: pointer;
+    z-index: 10;
 }
 
 .entries-nav #arrow-next {
     position: absolute;
     right: 1vw;
+    cursor: pointer;
+    z-index: 10;
 }
 
 #image-content .post {

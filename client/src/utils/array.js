@@ -45,3 +45,8 @@ export function create2Darray(A) {
     }
     return a;
 }
+
+export function randomProperty (obj) {
+  var keys = Object.keys(obj);
+  return obj[keys[ keys.length * Math.random() << 0]];
+};

@@ -23,9 +23,9 @@ export class Sound extends Base{
 
         this.wavesurfer = WaveSurfer.create({
             container: '#audio',
-            waveColor: 'violet',
+            waveColor: '#B087FF',
             progressColor: 'purple',
-            barWidth: 2,
+            barWidth: 3,
             barHeight: 1, // the height of the wave
             barGap: null
         });
