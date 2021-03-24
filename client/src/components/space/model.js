@@ -7,12 +7,14 @@ import { IMAGE_FOLDER } from '../../config'
 
 export const MODEL_ITEM_TYPE = 'model'
 const MODEL_WIDTH = 20;
-
-
 export class ModelItem extends ItemBase{
     constructor(data, obj_z) {
         super()
         this.data = data; 
+        this.color = data.color
+        if (!!this.color.length) {
+            this.color = this.color.replace('#', '')
+        }
         this.obj_z = obj_z;       
         this.object = this.data.object.replace('{filedir_8}', IMAGE_FOLDER)
         this.texture = this.data.texture.replace('{filedir_8}', IMAGE_FOLDER)
@@ -22,6 +24,7 @@ export class ModelItem extends ItemBase{
     modelLoaded() {
         this.object.traverse( ( child ) => {
             if ( child.isMesh ) {
+                
                 child.material.map = this.textureLoaded;
             }
             
@@ -61,6 +64,20 @@ export class ModelItem extends ItemBase{
             if (this.texture) {
                 this.loadTexture()
                 return
+            } else {
+                this.object.traverse( ( child ) => {
+                    if ( child instanceof THREE.Mesh ) {
+                        if (this.color) {
+                            //child.material.emissive.setHex('0x000000');
+                            child.material.color.setHex('0x' + this.color);
+                            child.material.shininess = 60
+                            console.log(this.data)
+                            console.log(child)
+                            console.log(this.color)
+                            console.log('------------')
+                        }
+                    }
+                } );
             }
 
             this.positionAndAdd()

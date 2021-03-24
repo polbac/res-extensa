@@ -3,6 +3,8 @@ import $ from 'jquery'
 import { uuidv4 } from '../../utils/uuid'
 import{ ItemBase } from './item-base'
 
+import { IMAGE_FOLDER } from '../../config'
+
 export const VIDEO_ITEM_TYPE = 'video'
 const VIDEO_WIDTH = 20;
 
@@ -15,8 +17,8 @@ export class VideoItem extends ItemBase{
 
     build() {
         const idDOMElement = uuidv4()
-        
-        $("body").append(`<video controls autoplay style='z-index: 0; position: absolute; top: 0; left: 0'  id='${idDOMElement}' src='${this.data.video}' muted="muted" ></video>`)
+        const videoPath = this.data.video_preview.replace('{filedir_8}', IMAGE_FOLDER)
+        $("body").append(`<video controls autoplay style='z-index: 0; position: absolute; top: 0; left: 0'  id='${idDOMElement}' src='${videoPath}' muted="muted" ></video>`)
         
         this.video = document.getElementById(idDOMElement);
         this.video.setAttribute('crossorigin', 'anonymous');

@@ -60,7 +60,7 @@ export class SoundItem extends ItemBase{
             this.group.add(this.line)
         }
 
-        this.image.src = `http://ee.testeando.website/one-line.php?text_2=${this.data.author}&text_1=${this.data.title}`
+        this.image.src = `https://res-extensa.com//one-line.php?text_2=${this.data.author}&text_1=${this.data.title}`
         
         
         
@@ -72,7 +72,7 @@ export class SoundItem extends ItemBase{
 
 
         /* ICON */
-        const icon = 'images/sound-icon.jpg'
+        const icon = 'img/sound-icon.jpg'
         this.iconMap = new THREE.TextureLoader().load(icon);
         this.iconMaterial = new THREE.SpriteMaterial( { map: this.iconMap, color: 0xffffff } );
         this.iconSprite = new THREE.Sprite( this.iconMaterial );

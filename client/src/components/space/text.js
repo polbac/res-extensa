@@ -13,7 +13,7 @@ export class TextItem extends ItemBase{
     }
 
     build() {
-        const image = `http://ee.testeando.website/image-generator.php?title=${this.data.title.toUpperCase()}&body=${this.data.subtitle}`
+        const image = `https://res-extensa.com/image-generator.php?title=${this.data.title.toUpperCase()}&body=${this.data.subtitle}`
         this.map = new THREE.TextureLoader().load(image);
         this.map.anisotropy = this.rendered.getMaxAnisotropy();
         this.map.minFilter = THREE.LinearFilter;

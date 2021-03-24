@@ -13,7 +13,8 @@ export class Chronological extends Base{
 
     mapData(data) {
         return {
-            items: data.items.map(item => ({
+            items: data.items.filter(i => i.type !== 'model')
+                .map(item => ({
                 ...item,
                 date: new Date(item.date).toLocaleDateString("en-US")
             }))
