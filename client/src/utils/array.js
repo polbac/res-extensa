@@ -14,7 +14,6 @@ export function arrayDivider(array, number) {
 
         if (i === itemsPerArea) {
             pos++;
-            index = 0;
         }
         
     });

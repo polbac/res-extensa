@@ -1,12 +1,12 @@
 import { Base } from './base'
-import $ from 'jquery'
+import moment from 'moment'
 export class Chronological extends Base{
 
     constructor(router) {
         super(
             router,
             'chronological',
-            '//ee.testeando.website/index.php/content',
+            '//res-extensa.com/index.php/content',
         )
         
     }
@@ -16,7 +16,7 @@ export class Chronological extends Base{
             items: data.items.filter(i => i.type !== 'model')
                 .map(item => ({
                 ...item,
-                date: new Date(item.date).toLocaleDateString("en-US")
+                date: moment(item.date, 'X').format('L')
             }))
         }
     }

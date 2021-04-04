@@ -1,13 +1,14 @@
 import { Base } from './base'
 import { getLastUrlPath } from '../utils/url'
 import { IMAGE_FOLDER, IMAGE_FOLDER_BLOG } from '../config'
+import moment from 'moment'
 export class Image extends Base{
 
     constructor(router) {
         super(
             router, 
             'image',
-            `http://ee.testeando.website/index.php/image?slug=${getLastUrlPath()}`,
+            `//res-extensa.com/index.php/image?slug=${getLastUrlPath()}`,
             true,
             'image'
         )
@@ -17,10 +18,12 @@ export class Image extends Base{
     mapData(data) {
         data.images = data.images.map(image => ({
             ...image,
-            col_id_11: image.col_id_11
-                .replace('{filedir_8}', IMAGE_FOLDER)
+            col_id_1: image.col_id_1
+                .replace('{filedir_5}', IMAGE_FOLDER)
                 .replace('{filedir_6}', IMAGE_FOLDER_BLOG)
         }))
+
+        data.date = moment(data.date, 'X').format('L')
         return data
     }
 

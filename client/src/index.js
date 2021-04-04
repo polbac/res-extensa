@@ -20,6 +20,14 @@ global.eventEmitter = new EventEmitter()
 
 require('./styles/main.css')
 
+fetch('https://res-extensa.com/index.php/site')
+  .then(res => res.text())
+  .then(res => {
+    var st = document.createElement("style");                        // Create a <p> node
+    st.innerHTML = res
+    document.querySelector("body").appendChild(st)
+  })
+
 const router = new Navigo(null, false);
 
 let page = null;

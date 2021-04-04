@@ -1,6 +1,4 @@
 <?php
-header('Access-Control-Allow-Origin: *');
-
 $text_1 = $_GET['text_1'];
 $text_2 = $_GET['text_2'];
 

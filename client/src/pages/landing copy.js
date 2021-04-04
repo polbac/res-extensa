@@ -1,11 +1,9 @@
 import * as THREE from 'three';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
 import { TweenMax } from 'gsap'
 import { Base } from './base'
 import addListener from 'the-listener';
-
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 
 import $ from 'jquery'
@@ -16,19 +14,22 @@ export class Landing  extends Base{
     }
     show() {
         $("nav").addClass("landing")
-        this.renderer = new THREE.WebGLRenderer();
-        this.renderer.setClearColor( 0xB08AFC );
+        this.renderer = new THREE.WebGLRenderer({ alpha: true });
         this.renderer.shadowMap.enabled = true;
         this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
         this.renderer.setPixelRatio( window.devicePixelRatio );
         this.renderer.setSize( window.innerWidth, window.innerHeight );
         this.camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 2000 );
-        this.camera.position.set( 0, 0, 20 );
+        this.camera.position.set( 0, 0, 15 );
 
         
         this.scene = new THREE.Scene();
+        this.light = new THREE.DirectionalLight( 0xffffff, 1, 100);
+        this.light.position.set( 0, 1, 10 ); //default; light shining from top
+        this.light.castShadow = true
+        this.ambient = new THREE.AmbientLight( 0xffffff );
 
-        
+        this.ambient.position.z = -1000
         
         this.loader = new GLTFLoader();
         this.loader.setCrossOrigin( 'anonymous' ) 
@@ -40,12 +41,38 @@ export class Landing  extends Base{
         $("body").addClass("section-landing")
 
         let loaded = 0
-        
 
-        this.loader.load('ResExtensa_deSaturated_violet_Lighting_deSaturated_02.glb', (gltf) => {
-                $("#preloader").hide()
+        this.loader.load('ResExtensa_deSaturated_violet_Lighting_deSaturated_02.glb', (object) => {
+            object.traverse( (child) => {
+                loaded++
+                console.log(loaded)
+                if (loaded >= 2) {
+                    $("#preloader").hide()
+                } else{
+                    $("#preloader").show()
+                }
+                child.material =  new THREE.MeshStandardMaterial( { 
+                    color: 0xffffff
+                } );
+                child.position.z = 0
+                child.position.x = 0
+                child.position.y = 0
+                this.el = child
+                
+                if (this.el.geometry) {
+                    this.el.geometry.center()
+                }
 
+                this.el.rotation.y = 0.2
 
+                this.el.castShadow = true; //default is false
+                this.el.receiveShadow = true; //default
+                
+                //TweenMax.from(this.el.position, 2, { z: -10 })
+                TweenMax.from(this.el.rotation, 2, { y: -1 })
+                TweenMax.from(this.el.material, 2, { opacity: 0 })
+                
+                
                 addListener(document.querySelector("#landing-section-mouse"), {
                     'mousedown touchstart': (e) => {
                         this.touching = true
@@ -85,31 +112,12 @@ export class Landing  extends Base{
                     }
                 })
                 
-            this.res = gltf
+
+            });
+            this.res = object
+            this.scene.add( this.res );
+            //this.camera.lookAt(this.scene.position);
             
-            this.mesh = gltf.scene;
-            var box = new THREE.Box3().setFromObject( this.mesh );
-            box.center( this.mesh.position ); 
-            this.mesh.position.multiplyScalar( - 1 );
-    
-            this.pivot = new THREE.Group();
-            this.pivot.add( this.mesh );
-            this.el = this.pivot
-
-            TweenMax.from(this.pivot.rotation, 2, { y: 0.3 })
-
-            this.scene.add( this.pivot );
-
-
-            gltf.animations; // Array<THREE.AnimationClip>
-            gltf.scene; // THREE.Group
-            gltf.scenes; // Array<THREE.Group>
-            gltf.cameras; // Array<THREE.Camera>
-            gltf.asset; // Object
-            
-            const pmremGenerator = new THREE.PMREMGenerator( this.renderer );
-			pmremGenerator.compileEquirectangularShader();
-
         
         }, undefined, function ( error ) {
             console.error( error );
@@ -119,9 +127,7 @@ export class Landing  extends Base{
         
         document.body.appendChild( this.renderer.domElement );
         this.animate.bind(this)()
-        
-
-        
+        this.scene.add( this.light );
         //this.scene.add( this.ambient );
 
         

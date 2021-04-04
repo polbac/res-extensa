@@ -9,6 +9,7 @@ import favorit from './favorit'
 import { strippedString } from './html'
 import moment from 'moment'
 
+
 const RES = 1
 
 const PAGE_WIDTH = 595 * RES
@@ -102,7 +103,7 @@ function addText(doc, extract){
 
         textPage.setFont("Favorit");    
         textPage.setFontSize(21);    
-        textPage.text(moment.unix(extract.date).format("MMM Do YY"), PAGE_WIDTH / 2, y, {
+        textPage.text(extract.date, PAGE_WIDTH / 2, y, {
             align: 'center'
         });
 
@@ -169,9 +170,9 @@ function addText(doc, extract){
 
         textImageHeader(textPage, extract)
 
-        images.forEach(({ width, height, image, col_id_12 }) => {
+        images.forEach(({ width, height, image, col_id_2 }) => {
             const imageHeight = IMAGE_WIDTH / (width/height)
-            const footerLines = doc.splitTextToSize(strippedString(col_id_12), IMAGE_WIDTH);
+            const footerLines = doc.splitTextToSize(strippedString(col_id_2), IMAGE_WIDTH);
             const totalBlockHeight = imageHeight + (footerLines.length * 15) + 25
             
             let ix, iy
@@ -268,7 +269,7 @@ function addImage(doc, extract){
         
         imagePage.setFont("Favorit");    
         imagePage.setFontSize(21);    
-        imagePage.text(moment.unix(extract.date).format("MMM Do YY"), PAGE_WIDTH / 2, y, {
+        imagePage.text(extract.date, PAGE_WIDTH / 2, y, {
             align: 'center'
         });
    
@@ -292,7 +293,7 @@ function addImage(doc, extract){
 
         y += 20
 
-        const { image, width, height, col_id_12 : epigraphe } = extract.images[0]
+        const { image, width, height, col_id_1 : epigraphe } = extract.images[0]
         let imageWidth, imageHeight
         const res = width / height
 
@@ -354,7 +355,7 @@ async function addPageAbout(doc, about){
 
     aboutPage.setFont("Phase");    
     aboutPage.setFontSize(25);    
-    aboutPage.text(about.contact_title, MARGIN_HORIZONTAL, y);
+    aboutPage.text("CONTACT", MARGIN_HORIZONTAL, y);
 
     y -= 40
 
@@ -372,7 +373,7 @@ async function addPageAbout(doc, about){
 
     aboutPage.setFont("Phase");    
     aboutPage.setFontSize(25);    
-    aboutPage.text(about.founders_title, MARGIN_HORIZONTAL, y);
+    aboutPage.text("FOUNDERS", MARGIN_HORIZONTAL, y);
 }
 
 function addPage(doc) {

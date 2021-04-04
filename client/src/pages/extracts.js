@@ -5,6 +5,7 @@ import { validateEmail } from '../utils/email'
 import { SAVE_EMAIL } from '../config'
 import { downloadHTML } from '../utils/download-html'
 import { downloadPdf } from '../utils/download-pdf'
+import moment from 'moment'
 export class Extracts extends Base{
 
     constructor(router) {
@@ -43,8 +44,8 @@ export class Extracts extends Base{
     }
 
     subscribeEmail(email) {
-        /* fetch(`${SAVE_EMAIL}${email}&t=${new Date()}`)
-            .then(res => console.log(res)) */
+        fetch(`${SAVE_EMAIL}${email}&t=${new Date()}`)
+            .then(res => console.log(res))
         this.download()
     }
 

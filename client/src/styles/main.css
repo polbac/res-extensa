@@ -204,7 +204,7 @@ nav #menu a#search-button:hover:after {
     }
     
 }
-
+nav.landing{display: none; }
 nav.landing,
 nav.random{
     background: transparent;

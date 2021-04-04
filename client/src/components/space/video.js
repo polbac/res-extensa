@@ -17,8 +17,8 @@ export class VideoItem extends ItemBase{
 
     build() {
         const idDOMElement = uuidv4()
-        const videoPath = this.data.video_preview.replace('{filedir_8}', IMAGE_FOLDER)
-        $("body").append(`<video controls autoplay style='z-index: 0; position: absolute; top: 0; left: 0'  id='${idDOMElement}' src='${videoPath}' muted="muted" ></video>`)
+        const videoPath = this.data.video_preview.replace('{filedir_5}', IMAGE_FOLDER)
+        $("body").append(`<video controls autoplay style='z-index: 0; position: absolute; top: 0; left: 0'  id='${idDOMElement}' src='${videoPath}' muted="muted" loop></video>`)
         
         this.video = document.getElementById(idDOMElement);
         this.video.setAttribute('crossorigin', 'anonymous');

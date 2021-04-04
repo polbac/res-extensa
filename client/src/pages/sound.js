@@ -1,5 +1,5 @@
 import WaveSurfer from 'wavesurfer.js';
-
+import moment from 'moment'
 
 import { Base } from './base'
 import { getLastUrlPath } from '../utils/url'
@@ -10,7 +10,7 @@ export class Sound extends Base{
         super(
             router, 
             'sound',
-            `http://ee.testeando.website/index.php/sound?slug=${getLastUrlPath()}`,
+            `//res-extensa.com/index.php/sound?slug=${getLastUrlPath()}`,
             true,
             'sound'
         )
@@ -18,24 +18,38 @@ export class Sound extends Base{
 
     show() {
         this.src = document.querySelector('#audio').getAttribute('src')
-        this.button = document.querySelector('#audio-button')
+        this.button = document.querySelector('.audio-button')
+        this.buttonPlay = document.querySelector('#button-play')
+        this.buttonPause = document.querySelector('#button-pause')
 
+        
+        this.buttonPause.style.display = "none"
+        
 
         this.wavesurfer = WaveSurfer.create({
             container: '#audio',
             waveColor: '#B087FF',
             progressColor: 'purple',
             barWidth: 3,
-            barHeight: 1, // the height of the wave
-            barGap: null
+            barHeight: 1,
+            barGap: null,
+            responsive: true,
         });
 
         const $time = document.querySelector('#current-time')
         
         this.wavesurfer.on('audioprocess', (sec) => {
-            console.log(timeFormat(sec))
             $time.innerHTML = timeFormat(sec)
+        })
 
+        this.wavesurfer.on('pause', (sec) => {
+            this.buttonPause.style.display = "none"
+            this.buttonPlay.style.display = "block"
+        })
+
+        this.wavesurfer.on('play', (sec) => {
+            this.buttonPause.style.display = "block"
+            this.buttonPlay.style.display = "none"
         })
 
         this.wavesurfer.load(document.querySelector('#audio').getAttribute('src'))
@@ -44,20 +58,22 @@ export class Sound extends Base{
 
         
     }
-
+    
+    
     mapData(data) {
         data.images = data.images.map(image => ({
             ...image,
-            col_id_11: image.col_id_11
-                .replace('{filedir_8}', IMAGE_FOLDER)
+            col_id_1: image.col_id_1
+                .replace('{filedir_5}', IMAGE_FOLDER)
                 .replace('{filedir_6}', IMAGE_FOLDER_BLOG),
             
         }))
 
         return {
             ...data,
+            date: moment(data.date, 'X').format('L'),
             audio: data.audio
-                .replace('{filedir_8}', IMAGE_FOLDER)
+                .replace('{filedir_5}', IMAGE_FOLDER)
                 .replace('{filedir_6}', IMAGE_FOLDER_BLOG),
         }
     }

@@ -96,15 +96,18 @@
     display: inline;
 }
 
-.audio .play button {
-    width: 2.8vw;
-    height: 2.8vw;
-    background: #B087FF;
-    border-radius: 1.5vw;
-    border: none;
+.play-wrapper{
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
 }
 
-.audio .play track {
+.audio .play .button {
+    cursor: pointer;
+}
+
+.audio .play .track {
     margin-top: -0.5vw;
     padding-left: .3vw;
 }

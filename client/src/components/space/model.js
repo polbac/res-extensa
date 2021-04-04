@@ -16,15 +16,16 @@ export class ModelItem extends ItemBase{
             this.color = this.color.replace('#', '')
         }
         this.obj_z = obj_z;       
-        this.object = this.data.object.replace('{filedir_8}', IMAGE_FOLDER)
-        this.texture = this.data.texture.replace('{filedir_8}', IMAGE_FOLDER)
+        this.object = this.data.object.replace('{filedir_5}', IMAGE_FOLDER)
+        this.texture = this.data.texture.replace('{filedir_5}', IMAGE_FOLDER)
         this.manager = new THREE.LoadingManager(this.modelLoaded.bind(this));   
     }
 
     modelLoaded() {
         this.object.traverse( ( child ) => {
             if ( child.isMesh ) {
-                
+                child.castShadow = true; //default is false
+                child.receiveShadow = true; //default
                 child.material.map = this.textureLoaded;
             }
             
@@ -67,15 +68,13 @@ export class ModelItem extends ItemBase{
             } else {
                 this.object.traverse( ( child ) => {
                     if ( child instanceof THREE.Mesh ) {
-                        if (this.color) {
+                        /* if (this.color) {
                             //child.material.emissive.setHex('0x000000');
                             child.material.color.setHex('0x' + this.color);
                             child.material.shininess = 60
-                            console.log(this.data)
-                            console.log(child)
-                            console.log(this.color)
-                            console.log('------------')
-                        }
+                            child.castShadow = true; //default is false
+                            child.receiveShadow = true; //default
+                        } */
                     }
                 } );
             }
@@ -105,11 +104,22 @@ export class ModelItem extends ItemBase{
         
         this.gltfLoader.setDRACOLoader( dracoLoader );
         this.gltfLoader.load(this.object, gltf => {
-            gltf.scene.scale.set( 0.05, 0.05, 0.05 );
-            gltf.scene.position.z = -10
-            gltf.scene.position.x = 2
-            gltf.scene.position.y = -2
-            this.group.add(gltf.scene)
+            this.object = gltf
+            this.object.scene.scale.set( this.data.scale || 1, this.data.scale || 1, this.data.scale || 1 );
+
+            this.mesh = gltf.scene;
+
+            var box = new THREE.Box3().setFromObject( this.mesh );
+            box.center( this.mesh.position ); 
+            this.mesh.position.multiplyScalar( - 1 );
+    
+            this.pivot = new THREE.Group();
+            this.pivot.add( this.mesh );
+    
+            
+            
+
+            this.group.add(this.pivot)
         })
     }
 
@@ -124,6 +134,11 @@ export class ModelItem extends ItemBase{
     render() {
         //this.group.rotation.x += 0.001
         //this.group.rotation.y += 0.001
+        
+    if (this.pivot) {
+        this.pivot.rotation.y += 0.01;
+        return
+    }
         this.group.rotation.y += 0.01
     }
 }

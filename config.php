@@ -22,4 +22,9 @@ $config['database'] = array(
 $config['show_ee_news'] = 'y';
 $config['allow_php'] = 'y';
 
+$config['mime_whitelist_additions'] = array(
+	'application/octet-stream',
+	'text/plain',
+  );
+
 // EOF

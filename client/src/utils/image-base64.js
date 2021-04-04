@@ -1,3 +1,4 @@
+import { IMAGE_FOLDER } from '../config'
 export function transformImages(extracts) {
     return Promise.all(extracts.map(extract => parseImages(extract)))
 }
@@ -23,23 +24,23 @@ function parseImage(image) {
         const img = new Image()
         let type
         
-        if (!image.col_id_11) {
+        if (!image.col_id_1) {
             resolve({
                 ...image,
-                image: image.col_id_11
+                image: image.col_id_1
             }) 
             return
         }
 
-        if (image.col_id_11.indexOf('.jpg') !== -1) {
+        if (image.col_id_1.indexOf('.jpg') !== -1) {
             type = 'image/jpeg'
         }
 
-        if (image.col_id_11.indexOf('.jpeg') !== -1) {
+        if (image.col_id_1.indexOf('.jpeg') !== -1) {
             type = 'image/jpeg'
         }
 
-        if (image.col_id_11.indexOf('.png') !== -1) {
+        if (image.col_id_1.indexOf('.png') !== -1) {
             type = 'image/png'
         }
         img.setAttribute('crossorigin', 'anonymous')
@@ -53,8 +54,9 @@ function parseImage(image) {
 
             })
          });
-         
-        img.src = image.col_id_11
+        
+         image.col_id_1 = image.col_id_1.replace('{filedir_5}', IMAGE_FOLDER)
+        img.src = image.col_id_1
         
     })
     

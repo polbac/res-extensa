@@ -40,7 +40,7 @@
     "webpack-merge": "^5.2.0"
   },
   "scripts": {
-    "dev": "webpack-dev-server",
+    "dev": "webpack-dev-server --https ",
     "build": "webpack --config webpack.prod.js"
   }
 }

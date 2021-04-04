@@ -11,7 +11,7 @@ export class Random extends Base{
         super(
             router, 
             'random',
-            'http://ee.testeando.website/index.php/content',
+            '//res-extensa.com/index.php/content',
         )
 
         this.router = router
@@ -36,33 +36,43 @@ export class Random extends Base{
         this.active = true
         this.currentOver = null
         this.userControl = new UserControl()
-        const areas =  arrayDivider(this.data, 1)
-        this.renderer = new THREE.WebGLRenderer({
-            alpha: true,
-         });
-        this.renderer.setClearColor(0xf2f2f2);
+        const areas =  arrayDivider(this.data, 2)
+        this.renderer = new THREE.WebGLRenderer();
+        
+        this.renderer.shadowMap.enabled = true;
+        this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        this.renderer.setClearColor(0xf2f2f2, 1);
+        
         this.renderer.localClippingEnabled = true;
         
         this.renderer.setSize( window.innerWidth, window.innerHeight );
         this.camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 2000 );
         this.scene = new THREE.Scene();
-        const ambientLight = new THREE.AmbientLight( 0xccccccc, 0.1 );
-        this.scene.add( ambientLight );
+        
+        this.light = new THREE.DirectionalLight(0xf2f2f2, 0.5);
+        
+        this.light.castShadow = true
+        this.scene.add(this.light)
+        
 
-        const pointLight = new THREE.PointLight( 0xffffff, 0.2 );
-        this.camera.add( pointLight );
         this.raycaster = new THREE.Raycaster()
         this.mouse = new THREE.Vector2();
-        
-        
         this.counter = 0
+
+        /* this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
+	    this.renderer.toneMappingExposure = 1; */
+        
+        const pmremGenerator = new THREE.PMREMGenerator( this.renderer );
+		pmremGenerator.compileEquirectangularShader();
+
+        this.renderer.setPixelRatio( window.devicePixelRatio );
 
         document.body.appendChild( this.renderer.domElement );
         
 
         this.groups = [
             new SpaceGroup(areas[0], this.scene, 0, this.renderer),
-            new SpaceGroup(areas[0], this.scene, 1, this.renderer),
+            new SpaceGroup(areas[1], this.scene, 1, this.renderer),
         ]
         
         this.groups[0].build()
@@ -146,6 +156,8 @@ export class Random extends Base{
     }
 
     resize() {
+        this.camera.aspect = window.innerWidth / window.innerHeight;
+		this.camera.updateProjectionMatrix();
         this.renderer.setSize(window.innerWidth, window.innerHeight);
     }
 

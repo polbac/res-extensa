@@ -3,71 +3,688 @@
 
 <head>
     <title>RES EXTENSA</title>
+    <meta charset="utf-8" />
+    <style>
+        /*SCROLLBAR*/
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        #sound-content .col-left {
+            padding-left: 10px;
+        }
+
+        /*FONTS*/
+        html,
+        body {
+            display: none;
+            font-family: 'Favorit Pro Light';
+        }
+
+        @font-face {
+            font-family: 'Galapagos';
+            src: url('https://res-extensa.com/fonts/GalapagosACLight.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Favorit Pro Light';
+            src: url('https://res-extensa.com/fonts/FavoritProLight.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Favorit Pro Light Italic';
+            src: url('https://res-extensa.com/fonts/FavoritProLightItalic.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Favorit Pro Book';
+            src: url('https://res-extensa.com/fonts/FavoritProBook.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Favorit Pro Regular';
+            src: url('https://res-extensa.com/fonts/FavoritProRegular.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Archive Pro Regular';
+            src: url('https://res-extensa.com/fonts/ArchiveProRegular.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Graebenbach Mono Regular';
+            src: url('https://res-extensa.com/fonts/GraebenbachMonoRegular.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Happy Times Regular';
+            src: url('https://res-extensa.com/fonts/HappyTimesRegular.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Phase GGX 100';
+            src: url('https://res-extensa.com/fonts/PhaseGGX100.woff') format('woff');
+        }
+
+
+        html,
+        body {
+            background: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            /*
+    overflow: hidden;
+    overscroll-behavior-x: none;
+    */
+            display: block;
+        }
+
+        * {
+            font-weight: normal;
+        }
+
+        h2,
+        h3,
+        h4,
+        h5 {
+            margin-block-start: 0;
+            margin-block-end: 0;
+            padding: 0;
+            margin: 0;
+        }
+
+        /*MENU*/
+        .html_download nav {
+            font-family: 'Favorit Pro Light';
+            font-size: 3.1vw;
+            text-transform: uppercase;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 98vw;
+            height: 5.25vw;
+            border-bottom: 1px solid black;
+            padding: .25vw 1vw 0 1vw;
+            background: #f2f2f2;
+            z-index: 99999999;
+        }
+
+        .html_download nav a {
+            color: black;
+            text-decoration: none;
+        }
+
+        .html_download nav .sitetitle {
+            position: absolute;
+        }
+
+        .html_download g {
+            font-family: 'Galapagos';
+        }
+
+        .html_download nav #menu {
+            float: right;
+            text-align: right;
+            margin-top: .25vw;
+        }
+
+        .html_download nav #menu a {
+            margin-left: 2.8vw;
+            line-height: 1;
+        }
+
+        .html_download nav #menu a img {
+            width: 2.6vw;
+            position: relative;
+            top: .25vw;
+            pointer-events: none !important;
+        }
+
+        /*IMAGE*/
+        .html_download #image-content {
+            padding: 5.5vw 19vw 2.2vw 19vw;
+            display: block;
+            text-align: center;
+            border-bottom: 1px solid black;
+        }
+
+        .html_download #sound-content .post,
+        .html_download #image-content .post {
+            display: block;
+            text-align: center;
+            margin-top: 1.4vw;
+            padding-bottom: 3vw;
+        }
+
+        .html_download #sound-content .post time,
+        .html_download #image-content .post time {
+            font-family: 'Favorit Pro Light';
+            font-size: 1.2vw;
+        }
+
+        .html_download #sound-content .post .title,
+        .html_download #image-content .post .title {
+            display: block;
+            font-family: 'Favorit Pro Light';
+            font-size: 2.5vw;
+            text-transform: uppercase;
+            padding-top: 2vw;
+        }
+
+        .html_download #image-content .post .title {
+            color: #a385fa
+        }
+
+        .html_download #image-content .post .title:before {
+            content: open-quote;
+        }
+
+        .html_download #image-content .post .title:after {
+            content: close-quote;
+        }
+
+        .html_download #image-content .post .author {
+            display: block;
+            font-family: 'Phase GGX 100';
+            font-size: 2.3vw;
+            line-height: .9;
+        }
+
+        .html_download #image-content .post-content .epigraph {
+            font-family: 'Favorit Pro Light';
+            font-size: 16px;
+            text-align: left;
+            padding: .5vw 0 3vw 0;
+        }
+
+        .html_download #image-content .post-content .img-row img {
+            width: 100%;
+            padding-left: 1px;
+            border-bottom: 0;
+        }
+
+        /*TEXT*/
+        .html_download #text-content {
+            display: flex;
+
+        }
+
+        .html_download .col-left {
+            /*position: fixed;*/
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 50vw;
+            height: 100%;
+            padding: 1.4vw 0 0 0;
+            border-right: 1px solid black;
+            overflow-y: scroll;
+        }
+
+        .html_download .col-left .post {
+            display: block;
+            text-align: center;
+            padding: 5.5vw 1.2vw 0 1.2vw;
+        }
+
+        .html_download .col-left time {
+            font-family: 'Favorit Pro Light';
+            font-size: 1.2vw;
+        }
+
+        .html_download .col-left .title {
+            display: block;
+            font-family: 'Favorit Pro Light';
+            font-size: 2.5vw;
+            line-height: .9;
+            text-transform: uppercase;
+            padding-top: 2vw;
+        }
+
+        .html_download .col-left .title:before {
+            content: open-quote;
+        }
+
+        .html_download .col-left .title:after {
+            content: close-quote;
+        }
+
+        .html_download .col-left .author {
+            display: block;
+            font-family: 'Phase GGX 100';
+            font-size: 2.3vw;
+            line-height: .9;
+        }
+
+        /*
+    .col-left subtitle {
+    display: block;
+    font-family: 'Phase GGX 100';
+    font-size: 2.3vw;
+    line-height: 1;
+    padding-top: 1.4vw;
+    }
+    */
+
+        .html_download .col-left .text {
+            font-family: 'Happy Times Regular';
+            font-size: 1.3vw;
+            line-height: 1.25;
+            padding: 2.2vw 1.2vw 0 1.2vw;
+        }
+
+        .html_download .col-right {
+            /*position: fixed;*/
+            top: 0vw;
+            right: 0;
+            margin-left: -1px;
+            height: 100%;
+            width: 50vw;
+            overflow-y: scroll;
+            border-left: 1px solid black;
+        }
+
+        .html_download .col-right .img-row:first-child {
+            padding-top: 10.1vw;
+        }
+
+        .html_download .col-right .img-row:last-child {
+            border-bottom: 0;
+        }
+
+        .html_download .img-row {
+            display: block;
+            padding-bottom: 1.2vw;
+        }
+
+        .html_download .img-row img {
+            width: 100%;
+            /*padding-left: 1px;*/
+        }
+
+        .html_download .img-row .epigraph {
+            font-family: 'Favorit Pro Light';
+            font-size: 16px;
+            padding: .5vw 1.2vw 1vw 1.2vw;
+        }
+
+        .html_download .row.text .title {
+            font-family: 'Favorit Pro Light';
+            font-size: 2.3vw;
+            line-height: 1;
+            padding: 0 1.2vw;
+        }
+
+        .html_download .row.text .epigraph {
+            font-family: 'Happy Times Regular';
+            font-size: 1.3vw;
+            line-height: 1.2;
+            padding: 0 1.2vw;
+        }
+
+
+        /* VIDEO */
+        .html_download #video-content {
+            padding: 5.5vw 19vw 2.2vw 19vw;
+            display: block;
+            text-align: center;
+            background: black;
+            height: 100vh;
+            overflow-Y: scroll;
+        }
+
+        .html_download #video-content .entries-nav a img {
+            width: 3.3vw;
+            position: relative;
+            top: .25vw;
+            pointer-events: none !important;
+            filter: invert(1);
+        }
+
+        .html_download #video-content .post {
+            display: block;
+            text-align: center;
+            margin-top: 1.4vw;
+            padding-bottom: 3vw;
+        }
+
+        .html_download #video-content .post time {
+            font-family: 'Favorit Pro Light';
+            font-size: 1.2vw;
+            color: white;
+        }
+
+        .html_download #video-content .post .title {
+            display: block;
+            font-family: 'Favorit Pro Light';
+            font-size: 2.5vw;
+            text-transform: uppercase;
+            padding-top: 2vw;
+            color: white;
+        }
+
+        .html_download #video-content .post .title:before {
+            content: open-quote;
+            color: white;
+        }
+
+        .html_download #video-content .post .title:after {
+            content: close-quote;
+            color: white;
+        }
+
+        .html_download #text-content .post .author,
+        .html_download #sound-content .post .author,
+        .html_download #video-content .post .author {
+            display: block;
+            font-family: 'Phase GGX 100';
+            font-size: 2.3vw;
+            line-height: .9;
+            color: white;
+        }
+
+        .html_download #text-content .post .author,
+        .html_download #sound-content .post .author {
+            color: black;
+        }
+
+        .content-wrapper {
+            border-bottom: 1px solid black;
+        }
+
+
+
+        .html_download .post-content .video-row video {
+            padding-left: 1px;
+        }
+
+
+        .play-wrapper,
+        #audio {
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #audio {
+            margin-bottom: 50px;
+        }
+
+
+        .play-wrapper {
+            display: flex !important;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .play-wrapper .track {
+            margin-top: -0.5vw;
+            padding-left: .3vw;
+        }
+    </style>
+
 </head>
 
 <body>
-    {{#each extracts}}
-    <div class="row img">
-        <category>{{type}}</category>
+    <div class="html_download">
+
+        <nav>
+            <a class="https://res-extensa.com/" href="/">
+                <g>R</g>e<g>s</g>E<g>x</g>te<g>n</g>sa
+            </a>
+            <div id="menu">
+                <a id="extracts-button" href="/extracts"><img src="https://res-extensa.com/extracts.svg" /></a>
+            </div>
+        </nav>
+
+        {{#each extracts}}
+
+
 
         {{#ifEquals type 'image'}}
-        {{#each images}}
-        <img src="{{image}}" />
-        {{/each}}
+        <div id="image-content" class='content-wrapper'>
+
+            <div class="post">
+                <time>{{date}}</time>
+                <h2 class="title">{{title}}</h2>
+                <h3 class="author">{{author}}</h3>
+            </div>
+
+            <div class="post-content">
+                {{#each images}}
+                <div class="img-row">
+                    <img src="{{image}}" />
+                    <div class="epigraph">
+                        {{col_id_2}}
+                    </div>
+                </div>
+
+                {{/each}}
+            </div>
+        </div>
         {{/ifEquals}}
 
         {{#ifEquals type 'video'}}
+        <div id="video-content">
 
-        <video autoplay muted loop src="{{video}}" width="100%" />
-        <div class="epigraph">
-            {{title}}
+            <div class="post">
+                <time>{{date}}</time>
+                <h2 class="title">{{title}}</h2>
+                <h3 class="author">{{author}}</h3>
+            </div>
+
+            <div class="post-content">
+
+                <video muted controls src="{{video}}" width="100%" />
+                <div class="epigraph">
+                    {{title}}
+                </div>
+            </div>
         </div>
         {{/ifEquals}}
 
         {{#ifEquals type 'text'}}
+        <div id="text-content" class='content-wrapper'>
 
-        <div class="col-left">
 
-            <div class="post">
-                <time>Apr 1st 2020</time>
-                <h2 class="title">{{title}}</h2>
-                <h3 class="author">{{author}}</h3>
-                <h4 class="subtitle">{{subtitle}}</h4>
-            </div>
+            <div class="col-left">
 
-            <div class="text">
-                {{{body}}}
-            </div>
-
-        </div>
-
-        <div class="col-right">
-
-            {{#each images}}
-            <div class="img-row">
-                <img src="{{image}}" />
-
-                <div class="epigraph">
-                    {{col_id_12}}
+                <div class="post">
+                    <time>{{date}}</time>
+                    <h2 class="title">{{title}}</h2>
+                    <h3 class="author">{{author}}</h3>
+                    <h4 class="subtitle">{{subtitle}}</h4>
                 </div>
+
+                <div class="text">
+                    {{{body}}}
+                </div>
+
             </div>
-            {{/each}}
+
+            <div class="col-right">
+
+                {{#each images}}
+                <div class="img-row">
+                    <img src="{{image}}" />
+
+                    <div class="epigraph">
+                        {{col_id_2}}
+                    </div>
+                </div>
+                {{/each}}
+            </div>
         </div>
         {{/ifEquals}}
 
         {{#ifEquals type 'sound'}}
+        <div id="sound-content" class='content-wrapper'>
 
-        <img src="{{images.0.col_id_11}}" />
-        <div class="epigraph">
-            {{title}}
+            <div class="post">
+                <time>{{date}}</time>
+                <h2 class="title">{{title}}</h2>
+                <h3 class="author">{{author}}</h3>
+
+            </div>
+
+            <div class="play play-wrapper">
+                <span class="audio-button button">
+
+
+                    <svg width="45" id="button-play" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 40 40"
+                        style="enable-background:new 0 0 40 40;" xml:space="preserve">
+                        <style type="text/css">
+                            .st0 {
+                                fill: #AE85FD;
+                            }
+
+                            .st1- {
+                                fill: #F2F2F2;
+                            }
+                        </style>
+                        <circle class="st0" cx="20" cy="20" r="19.5" />
+                        <g>
+                            <path class="st1-" d="M16.69,9.87l-1.93,1.93l0.01,16.4l1.91,1.93l12.56-10.12L16.69,9.87z M16.93,27L16.93,27L16.93,27z M16.94,27
+		L16.95,13L26,20.01L16.94,27z" />
+                        </g>
+                    </svg>
+
+
+
+
+                    <svg width="45" id='button-pause' version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 40 40"
+                        style="enable-background:new 0 0 40 40;" xml:space="preserve">
+                        <style type="text/css">
+                            .st0 {
+                                fill: #AE85FD;
+                            }
+
+                            .st1 {
+                                fill: none;
+                            }
+
+                            .st2 {
+                                fill: #F2F2F2;
+                            }
+                        </style>
+                        <circle class="st0" cx="20" cy="20" r="19.5" />
+                        <g>
+                            <polygon class="st1"
+                                points="17.95,26.92 17.95,26.92 17.95,27.8 18.83,26.92 18.85,26.92 26.49,19.28 17.97,11.65 	" />
+                            <g>
+                                <g>
+                                    <rect x="12.17" y="12.65" class="st2" width="2.06" height="13.67" />
+                                    <rect x="16.78" y="12.65" class="st2" width="2.06" height="13.67" />
+                                    <rect x="12.17" y="24.24" class="st2" width="6.67" height="2.06" />
+                                    <rect x="12.17" y="12.65" class="st2" width="6.67" height="2.06" />
+                                </g>
+                                <g>
+                                    <rect x="21.17" y="12.65" class="st2" width="2.06" height="13.67" />
+                                    <rect x="25.78" y="12.65" class="st2" width="2.06" height="13.67" />
+                                    <polyline class="st2" points="27.83,24.24 27.83,26.3 21.17,26.3 21.17,24.24 			" />
+                                    <rect x="21.17" y="12.65" class="st2" width="6.67" height="2.06" />
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+
+
+                </span>
+                <div class='track' style="flex: 4;">{{title}} • {{author}}</div>
+                <time id='current-time'>0:00</time>
+            </div>
+
+
+
+            <div id="audio" src="{{audio}}"></div>
+
+            <div style="display: flex;">
+
+                <div class="col-left">
+                    {{tracklist}}
+                </div>
+                <div class="col-right">
+                    <img src="{{images.0.col_id_1}}" />
+                    <div class="epigraph">
+                        {{images.0.col_id_2}}
+                    </div>
+                </div>
+            </div>
+
+
         </div>
-
         {{/ifEquals}}
-
-
-
+        {{/each}}
     </div>
-    {{/each}}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.0.53/wavesurfer.min.js"
+        integrity="sha512-9hC2ub/X05QoIEtChSXF+vcRbJVviAB3QseDDfQXRwOfN6LQLejyqeCU7wDSMyffnNCJjaHqGTwnDohU1VdYIA=="
+        crossorigin="anonymous"></script>
+
+    <script>
+        this.src = document.querySelector('#audio').getAttribute('src')
+        this.button = document.querySelector('.audio-button')
+        this.buttonPlay = document.querySelector('#button-play')
+        this.buttonPause = document.querySelector('#button-pause')
+
+
+        this.buttonPause.style.display = "none"
+
+        this.wavesurfer = WaveSurfer.create({
+            container: '#audio',
+            waveColor: '#B087FF',
+            progressColor: 'purple',
+            barWidth: 3,
+            barHeight: 1,
+            barGap: null,
+            responsive: true,
+        });
+
+        const $time = document.querySelector('#current-time')
+
+        this.wavesurfer.on('audioprocess', (sec) => {
+            $time.innerHTML = timeFormat(sec)
+        })
+
+        this.wavesurfer.on('pause', (sec) => {
+            this.buttonPause.style.display = "none"
+            this.buttonPlay.style.display = "block"
+        })
+
+        this.wavesurfer.on('play', (sec) => {
+            this.buttonPause.style.display = "block"
+            this.buttonPlay.style.display = "none"
+        })
+
+        this.wavesurfer.load(document.querySelector('#audio').getAttribute('src'))
+
+        this.button.onclick = this.wavesurfer.playPause.bind(this.wavesurfer)
+
+
+        function timeFormat(duration) {
+            // Hours, minutes and seconds
+            var hrs = ~~(duration / 3600);
+            var mins = ~~((duration % 3600) / 60);
+            var secs = ~~duration % 60;
+
+            // Output like "1:01" or "4:03:59" or "123:03:59"
+            var ret = "";
+
+            if (hrs > 0) {
+                ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
+            }
+
+            ret += "" + mins + ":" + (secs < 10 ? "0" : "");
+            ret += "" + secs;
+            return ret;
+        }
+    </script>
 </body>
 
 </html>

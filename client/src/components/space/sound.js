@@ -74,7 +74,8 @@ export class SoundItem extends ItemBase{
         /* ICON */
         const icon = 'img/sound-icon.jpg'
         this.iconMap = new THREE.TextureLoader().load(icon);
-        this.iconMaterial = new THREE.SpriteMaterial( { map: this.iconMap, color: 0xffffff } );
+        this.iconMaterial = new THREE.SpriteMaterial( { map: this.iconMap} );
+        
         this.iconSprite = new THREE.Sprite( this.iconMaterial );
         this.iconSprite.scale.set(IMAGE_HEIGHT, IMAGE_HEIGHT, 1);    
         this.group.add(this.iconSprite)
