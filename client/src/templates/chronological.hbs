@@ -4,6 +4,9 @@
     <div class="project-row">
         <date>{{date}}</date>
         <div class="project">
+            {{#each categories}}
+            <div class='category-name'>[{{@key}}]</div>
+            {{/each}}
             <title>{{title}}</title>
             <author>{{author}}</author>
         </div>

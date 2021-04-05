@@ -17,6 +17,12 @@
     background: #f2f2f2;
 }
 
+.category-name{
+    font-family: 'Favorit Pro Light';
+    font-size: 2.1vw;
+    margin-bottom: 8px;
+}
+
 .project-row:hover {
     background: linear-gradient( rgba(176,135,255,1), rgba(255,255,255,0)) !important;
 }
