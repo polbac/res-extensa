@@ -71,7 +71,7 @@ export class Sound extends Base{
 
         return {
             ...data,
-            date: moment(data.date, 'X').format('L'),
+            date: moment(data.date, 'X').format('MMM Do YY'),
             audio: data.audio
                 .replace('{filedir_5}', IMAGE_FOLDER)
                 .replace('{filedir_6}', IMAGE_FOLDER_BLOG),

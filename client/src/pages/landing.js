@@ -44,9 +44,10 @@ export class Landing  extends Base{
 
         this.loader.load('ResExtensa_deSaturated_violet_Lighting_deSaturated_02.glb', (gltf) => {
                 $("#preloader").hide()
-
-
-                addListener(document.querySelector("#landing-section-mouse"), {
+                if (window.innerWidth < 600) {
+                    gltf.scene.scale.set( 0.3, 0.3, 0.3)
+                }
+                /* addListener(document.querySelector("#landing-section-mouse"), {
                     'mousedown touchstart': (e) => {
                         this.touching = true
                         
@@ -83,7 +84,7 @@ export class Landing  extends Base{
                         this.lastX = e.pageX
                         this.lastY = e.pageY
                     }
-                })
+                }) */
                 
             this.res = gltf
             
@@ -96,7 +97,7 @@ export class Landing  extends Base{
             this.pivot.add( this.mesh );
             this.el = this.pivot
 
-            TweenMax.from(this.pivot.rotation, 2, { y: 0.3 })
+            TweenMax.from(this.pivot.rotation, 4, { y: 0.3 })
 
             this.scene.add( this.pivot );
 

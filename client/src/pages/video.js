@@ -19,7 +19,7 @@ export class Video extends Base{
         data.video = data.video
                 .replace('{filedir_5}', IMAGE_FOLDER)
                 .replace('{filedir_6}', IMAGE_FOLDER_BLOG)
-        data.date = moment(data.date, 'X').format('L')
+        data.date = moment(data.date, 'X').format('MMM Do YY')
         return data
     }
 

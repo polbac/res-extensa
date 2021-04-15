@@ -14,7 +14,7 @@
                     conditions</text></label>
         </div>
 
-        <input type="text" class="email" id="email" placeholder="Type your email...">
+        <input type="text" class="email" id="email" placeholder="email...">
         <button id="download">DOWNLOAD</button>
 
         <div class="errors"></div>
@@ -29,12 +29,12 @@
 
     <div class="col-right">
         {{#each extracts}}
-        <div class="row img">
+        <div class="row {{type}} row-{{type}}">
             <category>{{type}}</category>
 
             {{#ifEquals type 'image'}}
             <button class='delete-button' slug="{{slug}}">delete</button>
-            <img src="{{images.0.col_id_1}}" />
+            <img src="{{images.0.col_id_1}}" width="100%" />
             <div class="epigraph">
                 {{images.0.col_id_2}}
             </div>
@@ -60,7 +60,7 @@
 
             {{#ifEquals type 'sound'}}
             <button class='delete-button' slug="{{slug}}">delete</button>
-            <img src="{{images.0.col_id_1}}" />
+            <img src="{{images.0.col_id_1}}" width="100%"" />
             <div class="epigraph">
                 {{title}}
             </div>
@@ -71,7 +71,7 @@
 
         </div>
         {{else}}
-        <div style='margin-top: 100px;text-align: center;'>IS EMPTY</div>
+        <div style='margin-top: 100px;text-align: center;' class='is-empty'>IS EMPTY</div>
         {{/each}}
 
 

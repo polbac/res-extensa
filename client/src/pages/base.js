@@ -87,7 +87,7 @@ export class Base {
     }
 
     bindLinks() {
-        $('#section a').on('click', (event) => {
+        $('#section a').not("[target]").on('click', (event) => {
             event.preventDefault()
             this.router.navigate($(event.target).attr("href"), true)
             return false
@@ -96,7 +96,12 @@ export class Base {
 
     setAddToExtracts() {
         if (this.addToExtract && !ExtractsManager.contains(this.data)) {
-            $("#section h2").append("<span class='add-to-extracts'>+ add to EXTRACTS</span>")
+            $("#section").append(`
+            <div class='add-to-extracts'>
+                <img class='extracts-icon' src="/extracts.svg">
+                <span>+ add to EXTRACTS</span>
+            </div>
+            `)
             $("#section h2").on("click", this.addExtract.bind(this))
             
             const $m = $(".add-to-extracts")
@@ -116,11 +121,11 @@ export class Base {
                     display: "none",
                 })
             })
-            $("#section h2").on("mousemove", e => {
+            $(document).on("mousemove", e => {
                 $m.css({
-                    top: e.clientY - 20,
-                    left: e.clientX - 140,
-                    position: 'absolute',
+                    top: e.clientY - $m.height() / 2,
+                    left: e.clientX + 10,
+                    position: 'fixed',
                 })
             })
         }
@@ -143,6 +148,7 @@ export class Base {
 
         $(".add-to-extracts").remove()
 
-        $("#section h2").on("mouseenter mouseleave mousemove", null)
+        $("#section h2").on("mouseenter mouseleave", null)
+        $(document).on("mousemove", null)
     }
 }

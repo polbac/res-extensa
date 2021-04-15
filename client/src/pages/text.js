@@ -15,7 +15,7 @@ export class Text extends Base{
     }
 
     mapData(data) {
-        data.date = moment(data.date, 'X').format('L'),
+        data.date = moment(data.date, 'X').format('MMM Do YY'),
         data.images = data.images.map(image => ({
             ...image,
             

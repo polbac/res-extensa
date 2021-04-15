@@ -23,7 +23,7 @@ export class Image extends Base{
                 .replace('{filedir_6}', IMAGE_FOLDER_BLOG)
         }))
 
-        data.date = moment(data.date, 'X').format('L')
+        data.date = moment(data.date, 'X').format('MMM Do YY')
         return data
     }
 

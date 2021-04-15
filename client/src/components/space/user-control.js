@@ -1,4 +1,3 @@
-import  mouseWheel from 'mouse-wheel'
 
 export const VerticalDirection = {
     TOP: 'top',
@@ -16,6 +15,11 @@ export const CLICK = 'click'
 
 const OFFSET = 4
 export class UserControl {
+    destroy() {
+        document.removeEventListener("touchstart", this.touchstart, false);
+        document.removeEventListener("touchmove", this.touchMove, false);
+        
+    }
     constructor() {
         this.lastX = 0
         this.lastY = 0
@@ -26,7 +30,17 @@ export class UserControl {
         document.addEventListener('click', this.onClick.bind(this), false);
 
 
-        mouseWheel((x, y) => {
+        window.addEventListener('wheel', (e) => {
+            e.preventDefault()
+            const x = e.deltaX
+            const y = e.deltaY
+
+            processVector(x, y)
+
+            return false
+        });
+
+        const processVector = (x, y) => {
             if (x > OFFSET) {
                 this.horizontalDirection = HorizontalDirection.LEFT
             }
@@ -53,9 +67,43 @@ export class UserControl {
 
             this.lastX = x
             this.lastY = y
+        }
 
-            return false;
-        })
+        let touchstartX, touchstartY, touchendX, touchendY
+
+        
+        
+        this.touchStart = (e) => {
+            touchstartX = e.touches[0].clientX;
+            touchstartY = e.touches[0].clientY;
+            e.preventDefault()
+            return false
+        }
+
+        document.addEventListener('touchstart', this.touchStart, false);
+        
+        
+
+        this.touchMove = (e) => {
+            
+            touchendX = e.touches[0].clientX;
+            touchendY = e.touches[0].clientY;
+
+            const x = (touchstartX - touchendX) / 10
+            const y = (touchstartY - touchendY) / 10
+            
+            processVector(x, y)
+
+            e.preventDefault()
+
+            touchendX = e.touches[0].clientX;
+            touchendY = e.touches[0].clientY;
+            return false
+        }
+
+        document.addEventListener('touchmove', this.touchMove, false); 
+        
+
     }
 
     mapMouseCoordinates({clientX, clientY})  {
@@ -75,6 +123,7 @@ export class UserControl {
     }
 
     onDocumentMouseMove(event) {
+        event.preventDefault();
         const { x, y} = this.mapMouseCoordinates(event)
         global.eventEmitter.emit(MOUSE_MOVE, { 
             x,

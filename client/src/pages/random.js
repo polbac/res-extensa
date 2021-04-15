@@ -49,10 +49,11 @@ export class Random extends Base{
         this.camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 2000 );
         this.scene = new THREE.Scene();
         
-        this.light = new THREE.DirectionalLight(0xf2f2f2, 0.5);
+        this.light = new THREE.DirectionalLight( 0xffffff, 0.5 );
+        this.light.position.z = 5
         
         this.light.castShadow = true
-        this.scene.add(this.light)
+        this.scene.add(this.light) 
         
 
         this.raycaster = new THREE.Raycaster()
@@ -162,6 +163,7 @@ export class Random extends Base{
     }
 
     destroy() {
+        this.userControl.destroy()
         this.active = false
         document.querySelector('body').style.cursor = 'initial'
         cancelAnimationFrame(this.idAnimationFrame)

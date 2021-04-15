@@ -16,7 +16,7 @@ export class Chronological extends Base{
             items: data.items.filter(i => i.type !== 'model')
                 .map(item => ({
                 ...item,
-                date: moment(item.date, 'X').format('L')
+                date: moment(item.date, 'X').format('MMM Do YY')
             }))
         }
     }
