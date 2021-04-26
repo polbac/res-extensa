@@ -1,1 +1,30 @@
+.landing-loading{
+    
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: #B08AFC;
+    z-index: 99999999999;
+    font-family: 'Favorit Pro Light';
+    text-transform: uppercase;
+}
 
+.landing-loading .landing-text{
+    color: white;
+    font-size: 60px;
+    
+    position: fixed;
+    top: 50%;
+    left: 50%;
+
+    margin-left: -226px;
+    margin-top: -30px;
+    cursor: pointer;
+
+}
+
+.landing-loading .landing-text g{
+    font-family: 'Galapagos'; 
+}

@@ -34,6 +34,8 @@ export class Base {
                     this.bindLinks()
                     this.setAddToExtracts()
 
+                    document.querySelector("#root").style.display = "block"
+
                     const { categories } = content
                     
                     document.querySelector('.entries-nav #arrow-prev').style.display = 'none'
@@ -75,6 +77,8 @@ export class Base {
                 })
                 return
         }
+
+        document.querySelector("#root").style.display = "block"
 
         $('#section').html(template({ extracts }))
 

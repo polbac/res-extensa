@@ -5,7 +5,7 @@ import { Base } from './base'
 import { UserControl, MOVE, MOUSE_MOVE, CLICK } from '../components/space/user-control'
 import {TweenMax} from 'gsap'
 
-import $ from 'jquery'
+import $, { Tween } from 'jquery'
 export class Random extends Base{
     constructor(router){
         super(
@@ -32,7 +32,27 @@ export class Random extends Base{
         return shuffle(newData)
     }
 
+    hideLanding() {
+        TweenMax.killTweensOf('.landing-loading')
+        TweenMax.to('.landing-loading', 0.5, { opacity: 0, onComplete: () => {
+            window.showingLanding = false
+            document.querySelector('.landing-loading').remove()
+        }})
+    }
+
     show() {
+        if (window.landingShowed) {
+            window.showingLanding = false
+            document.querySelector('.landing-loading').remove()
+        } else {
+            window.showingLanding = true
+            document.querySelector('.landing-text').addEventListener('click', () => this.hideLanding())
+            TweenMax.from('.landing-text', 5, { scale: 0.4, opacity: 0, onComplete: () => this.hideLanding()  })
+        }
+        
+
+        window.landingShowed = true
+
         this.active = true
         this.currentOver = null
         this.userControl = new UserControl()
@@ -142,8 +162,8 @@ export class Random extends Base{
             })
 
             const intersects = this.raycaster.intersectObjects(items);
-            
-            if (!!intersects.length) {
+
+            if (!!intersects.length && !window.showingLanding) {
                 document.querySelector('body').style.cursor = 'pointer'
                 this.currentOver = intersects[0]
             } else {
@@ -163,6 +183,7 @@ export class Random extends Base{
     }
 
     destroy() {
+        TweenMax.killTweensOf('.landing-loading')   
         this.userControl.destroy()
         this.active = false
         document.querySelector('body').style.cursor = 'initial'

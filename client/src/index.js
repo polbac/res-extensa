@@ -4,7 +4,6 @@ import 'babel-polyfill';
 import { Random } from './pages/random'
 import { Chronological } from './pages/chronological'
 import { Extracts } from './pages/extracts'
-import { Landing } from './pages/landing'
 import { About } from './pages/about'
 import { Image } from './pages/image'
 import { Sound } from './pages/sound'
@@ -41,10 +40,6 @@ const gotoPage = Section => {
 }
 
 window.onload = () => {
-  router
-    .on('/random', function () {
-      gotoPage(Random)
-    })
   router.on('/chronological', function () {
       gotoPage(Chronological)
     })
@@ -69,14 +64,15 @@ window.onload = () => {
     })
 
   router.on(function (a) {
-      gotoPage(Landing)
+      gotoPage(Random)
     })  
   
   router.resolve()
     
 
-    createNavigation(router)
-    createSearch(router)
+  createNavigation(router)
+  createSearch(router)
+  
 }
 
 window.onresize = () => {
@@ -84,3 +80,4 @@ window.onresize = () => {
     page.resize()
   }
 }
+
