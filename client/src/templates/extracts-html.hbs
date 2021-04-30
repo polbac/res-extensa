@@ -371,6 +371,19 @@
             color: white;
         }
 
+        .rizoma{
+            color: black;
+            text-decoration: none;
+            right: 0;
+            padding: 0;
+            margin: 0;
+            font-family: 'Favorit Pro Light';
+            font-size: 24px;
+            text-align: center;
+            letter-spacing: 0em;
+            transition: .2s;
+        }
+
         .html_download #video-content .post .title:after {
             content: close-quote;
             color: white;
@@ -425,6 +438,30 @@
             margin-top: -0.5vw;
             padding-left: .3vw;
         }
+
+        #about{
+            text-align: center;
+            padding-top: 60px;
+            padding-bottom: 60px;
+            font-size: 20px;
+        }
+
+        #about p{
+                max-width: 800px;
+    margin: auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-size: 27px;
+        }
+        #about a{
+            color: black;
+        }
+        #about h3{
+                display: block;
+                font-family: 'Phase GGX 100';
+                font-size: 2.3vw;
+                line-height: .9;
+        }
     </style>
 
 </head>
@@ -450,6 +487,7 @@
 
             <div class="post">
                 <time>{{date}}</time>
+                <p class="rizoma">[ {{rizoma}} ]</p>
                 <h2 class="title">{{title}}</h2>
                 <h3 class="author">{{author}}</h3>
             </div>
@@ -472,6 +510,7 @@
         <div id="video-content">
 
             <div class="post">
+                <p class="rizoma">[ {{rizoma}} ]</p>
                 <time>{{date}}</time>
                 <h2 class="title">{{title}}</h2>
                 <h3 class="author">{{author}}</h3>
@@ -495,6 +534,7 @@
 
                 <div class="post">
                     <time>{{date}}</time>
+                    <p class="rizoma">[ {{rizoma}} ]</p>
                     <h2 class="title">{{title}}</h2>
                     <h3 class="author">{{author}}</h3>
                     <h4 class="subtitle">{{subtitle}}</h4>
@@ -526,6 +566,7 @@
 
             <div class="post">
                 <time>{{date}}</time>
+                <p class="rizoma">[ {{rizoma}} ]</p>
                 <h2 class="title">{{title}}</h2>
                 <h3 class="author">{{author}}</h3>
 
@@ -621,6 +662,18 @@
         </div>
         {{/ifEquals}}
         {{/each}}
+
+        <div id="about">
+            <h3>ABOUT</h3>
+            <p>{{{aboutContent.about_paragraph}}}</p>
+
+            <h3>FOUNDERS</h3>
+            <p>{{{aboutContent.founders_info}}}</p>
+
+            <h3>CONTACT</h3>
+            <p>{{{aboutContent.contact_info}}}</p>
+
+        </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.0.53/wavesurfer.min.js"

@@ -4,6 +4,9 @@
 
         <div class="post">
             <time>{{date}}</time>
+            {{#each categories}}
+            <div class='category-name'>[{{@key}}]</div>
+        {{/each}}
             <h2 class="title">{{title}}</h2>
             <h3 class="author">{{author}}</h3>
             <h4 class="subtitle">{{subtitle}}</h4>

@@ -5,7 +5,7 @@ import { Base } from './base'
 import { UserControl, MOVE, MOUSE_MOVE, CLICK } from '../components/space/user-control'
 import {TweenMax} from 'gsap'
 
-import $, { Tween } from 'jquery'
+import $ from 'jquery'
 export class Random extends Base{
     constructor(router){
         super(
@@ -36,18 +36,21 @@ export class Random extends Base{
         TweenMax.killTweensOf('.landing-loading')
         TweenMax.to('.landing-loading', 0.5, { opacity: 0, onComplete: () => {
             window.showingLanding = false
-            document.querySelector('.landing-loading').remove()
+            if (document.querySelector('.landing-loading')) {
+                document.querySelector('.landing-loading').remove()
+            }
         }})
     }
 
     show() {
+        document.querySelector('body').style.cursor = 'url(/cursor.png), auto'
         if (window.landingShowed) {
             window.showingLanding = false
             document.querySelector('.landing-loading').remove()
         } else {
             window.showingLanding = true
             document.querySelector('.landing-text').addEventListener('click', () => this.hideLanding())
-            TweenMax.from('.landing-text', 5, { scale: 0.4, opacity: 0, onComplete: () => this.hideLanding()  })
+            TweenMax.from('.landing-text', 3, { opacity: 0, onComplete: () => this.hideLanding()  })
         }
         
 
@@ -119,6 +122,11 @@ export class Random extends Base{
         TweenMax.to("canvas", 1, { opacity: 1, delay: 1 })
     }
 
+    reRandom() {
+        this.groups[0].reRandom()
+        this.groups[1].reRandom()
+    }
+
     move(coor) {
         this.coor = coor
     }
@@ -150,8 +158,6 @@ export class Random extends Base{
 
         this.raycaster.setFromCamera(this.mouse, this.camera);
 
-        
-
         if (this.groups) {
             const items = []
             this.groups.forEach(group => {
@@ -164,10 +170,10 @@ export class Random extends Base{
             const intersects = this.raycaster.intersectObjects(items);
 
             if (!!intersects.length && !window.showingLanding) {
-                document.querySelector('body').style.cursor = 'pointer'
+                //document.querySelector('body').style.cursor = 'pointer'
                 this.currentOver = intersects[0]
             } else {
-                document.querySelector('body').style.cursor = 'initial'
+                //document.querySelector('body').style.cursor = 'initial'
                 this.currentOver = null
             }
         }
@@ -183,7 +189,9 @@ export class Random extends Base{
     }
 
     destroy() {
+        document.querySelector('body').style.cursor = 'initial'
         TweenMax.killTweensOf('.landing-loading')   
+        TweenMax.killTweensOf('.landing-text')      
         this.userControl.destroy()
         this.active = false
         document.querySelector('body').style.cursor = 'initial'

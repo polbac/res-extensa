@@ -107,6 +107,17 @@ function addText(doc, extract){
             align: 'center'
         });
 
+        if (!!extract.rizoma) {
+            y += 30
+            textPage.setFont("Favorit");    
+            textPage.setFontSize(25);    
+            textPage.text(`[${extract.rizoma}]`, PAGE_WIDTH / 2, y, {
+                align: 'center'
+            });
+
+            y += 20
+        }
+
         textPage.setFontSize(31);   
         const title = doc.splitTextToSize(extract.title, PAGE_WIDTH - (MARGIN_HORIZONTAL * 2));
         
@@ -272,6 +283,17 @@ function addImage(doc, extract){
         imagePage.text(extract.date, PAGE_WIDTH / 2, y, {
             align: 'center'
         });
+
+        if (!!extract.rizoma) {
+            y += 30
+            imagePage.setFont("Favorit");    
+            imagePage.setFontSize(25);    
+            imagePage.text(`[${extract.rizoma}]`, PAGE_WIDTH / 2, y, {
+                align: 'center'
+            });
+
+            y += 20
+        }
    
         imagePage.setFontSize(31);   
         

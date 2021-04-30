@@ -29,42 +29,49 @@ fetch('https://res-extensa.com/index.php/site')
 
 const router = new Navigo(null, false);
 
-let page = null;
+window.page = null;
 
 const gotoPage = Section => {
-  if (page) {
-    page.destroy()
+  if (window.page) {
+    window.page.destroy()
   }
 
-  page = new Section(router)
+  window.page = new Section(router)
 }
 
 window.onload = () => {
   router.on('/chronological', function () {
       gotoPage(Chronological)
+      window.currentPage = 'Chronological'
     })
   router.on('/extracts', function () {
       gotoPage(Extracts)
+      window.currentPage = 'Extracts'
     })
   router.on('/about', function () {
       gotoPage(About)
+      window.currentPage = 'About'
     })
   router.on('/text/*', function () {
       gotoPage(Text)
+      window.currentPage = 'Text'
     })
   router.on('/sound/*', function () {
-      console.log('so')
       gotoPage(Sound)
+      window.currentPage = 'Sound'
     })
   router.on('/video/*', function () {
       gotoPage(Video)
+      window.currentPage = 'Video'
     })
   router.on('/image/*', function () {
       gotoPage(Image)
+      window.currentPage = 'Image'
     })
 
-  router.on(function (a) {
+  router.on(function () {
       gotoPage(Random)
+      window.currentPage = 'Random'
     })  
   
   router.resolve()

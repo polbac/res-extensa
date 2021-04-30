@@ -2,6 +2,7 @@ import { ItemFactory } from './item'
 import { create2Darray } from '../../utils/array'
 import * as THREE from 'three';
 import { VerticalDirection, HorizontalDirection } from './user-control'
+import { shuffle } from '../../utils/array'
 
 const COORDINATE_VELOCITY = .01
 const MAX_VALUE = 9999999999
@@ -16,6 +17,19 @@ export class SpaceGroup {
         this.matrix = create2Darray(this.data)
         this.items = [];
         this.group = new THREE.Group();
+    }
+
+    reRandom() {
+      const newPos = shuffle(this.items)
+        .map(item => ({
+          x: item.getX(),
+          y: item.getY(),
+        }))
+        
+        this.items.forEach((item, i) => {
+          item.setX(newPos[i].x)
+          item.setY(newPos[i].y)
+        })
     }
 
     getCanvasWidth() {

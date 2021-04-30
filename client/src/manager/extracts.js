@@ -14,7 +14,13 @@ class Extracts{
     }
 
     getExtracts() {
-        return this.extracts
+        return this.extracts.map(extract => {
+            extract.rizoma = ''
+            if (!!Object.keys(extract.categories).length) {
+                extract.rizoma = Object.keys(extract.categories)[0]
+            }
+            return extract
+        })
     }
 
     saveExtracts() {
