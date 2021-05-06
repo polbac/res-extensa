@@ -120,6 +120,7 @@ export class Random extends Base{
 
         TweenMax.set("canvas, video", { opacity: 0 })
         TweenMax.to("canvas", 1, { opacity: 1, delay: 1 })
+        window.isInRandom = true
     }
 
     reRandom() {
@@ -202,6 +203,7 @@ export class Random extends Base{
         this.camera = null
         this.renderer = null
         $("nav").removeClass("random")
+        window.isInRandom = false
         
     }
 

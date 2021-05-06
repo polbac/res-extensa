@@ -22,7 +22,15 @@
     margin-left: -226px;
     margin-top: -30px;
     cursor: pointer;
+}
 
+@media (max-width: 760px) {
+    .landing-loading .landing-text {
+        margin-left: -164px;
+        margin-top: -23px;
+        cursor: pointer;
+        font-size: 41px;
+    }
 }
 
 .landing-loading .landing-text g{

@@ -17,9 +17,54 @@ const OFFSET = 4
 export class UserControl {
     destroy() {
         document.removeEventListener("touchstart", this.touchstart, false);
+        document.removeEventListener("mousemove", this.onDocumentMouseMove, false);
         document.removeEventListener("touchmove", this.touchMove, false);
-        
+        window.removeEventListener('wheel', this.wheel, true)   
     }
+
+    wheel(e) {
+        if (!window.isInRandom) {
+            return
+        }
+        
+        e.preventDefault()
+        const x = e.deltaX
+        const y = e.deltaY
+
+        this.processVector(x, y)
+
+        return false
+    }
+
+    processVector(x, y) {
+        if (x > OFFSET) {
+            this.horizontalDirection = HorizontalDirection.LEFT
+        }
+
+        if (x < -OFFSET) {
+            this.horizontalDirection = HorizontalDirection.RIGHT
+        }
+
+        if (y < -OFFSET) {
+            this.verticalDirection = VerticalDirection.BOTTOM
+        }
+
+        if (y > OFFSET) {
+            this.verticalDirection = VerticalDirection.TOP
+        }
+        
+        global.eventEmitter.emit(MOVE, { 
+            horizontalDirection: this.horizontalDirection,
+            verticalDirection: this.verticalDirection,
+            x: -x,
+            y: -y,
+        })
+
+
+        this.lastX = x
+        this.lastY = y
+    }
+    
     constructor() {
         this.lastX = 0
         this.lastY = 0
@@ -30,44 +75,8 @@ export class UserControl {
         document.addEventListener('click', this.onClick.bind(this), false);
 
 
-        window.addEventListener('wheel', (e) => {
-            e.preventDefault()
-            const x = e.deltaX
-            const y = e.deltaY
+        window.addEventListener('wheel', this.wheel.bind(this));
 
-            processVector(x, y)
-
-            return false
-        });
-
-        const processVector = (x, y) => {
-            if (x > OFFSET) {
-                this.horizontalDirection = HorizontalDirection.LEFT
-            }
-
-            if (x < -OFFSET) {
-                this.horizontalDirection = HorizontalDirection.RIGHT
-            }
-
-            if (y < -OFFSET) {
-                this.verticalDirection = VerticalDirection.BOTTOM
-            }
-
-            if (y > OFFSET) {
-                this.verticalDirection = VerticalDirection.TOP
-            }
-            
-            global.eventEmitter.emit(MOVE, { 
-                horizontalDirection: this.horizontalDirection,
-                verticalDirection: this.verticalDirection,
-                x: -x,
-                y: -y,
-            })
-
-
-            this.lastX = x
-            this.lastY = y
-        }
 
         let touchstartX, touchstartY, touchendX, touchendY
 
@@ -92,7 +101,7 @@ export class UserControl {
             const x = (touchstartX - touchendX) / 10
             const y = (touchstartY - touchendY) / 10
             
-            processVector(x, y)
+            this.processVector(x, y)
 
             e.preventDefault()
 

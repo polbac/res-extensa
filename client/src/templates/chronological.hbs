@@ -1,7 +1,7 @@
 <div id="chrono-content">
 
     {{#each items}}
-    <div class="project-row project-{{type}}">
+    <div class="project-row project-{{type}}" data-category="{{#each categories}}[{{@key}}]{{/each}}">
         <date>{{date}}</date>
         <div class="project">
             {{#each categories}}
@@ -16,3 +16,13 @@
     {{/each}}
 
 </div>
+<style>
+    #chrono-content .category-name{
+        position: relative;
+        z-index: 9999999;
+        cursor: pointer;
+    }
+    #chrono-content .category-name:hover{
+        text-decoration: underline;
+    }
+</style>

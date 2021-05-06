@@ -56,6 +56,14 @@
     overscroll-behavior-x: none;
   }
 
+  body.in-search nav,
+  body.in-search canvas,
+  body.in-search section{
+    filter: blur(4px);
+    -webkit-filter: blur(4px);
+    -moz-filter: blur(4px);
+  }
+
   #search{
     position: fixed;
     top: 0;
@@ -64,6 +72,7 @@
     bottom: 0;
     z-index: 99999999;
     backdrop-filter: blur(6px);
+    -webbkit-backdrop-filter: blur(6px);
     align-items: center;
     justify-content: center;
     display: flex;
@@ -85,6 +94,7 @@
     font-size: 33px;
     outline: 0;
     font-family: 'Favorit Pro Light';
+    line-height: auto !important;
   }
 
   #search #results{

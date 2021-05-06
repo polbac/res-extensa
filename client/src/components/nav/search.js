@@ -24,10 +24,12 @@ export const SearchModule = {
         $input.val('')
         $results.html(``)
         $search.css("display", "flex");
+        $("body").addClass("in-search")
     },
 
     hide() {
         $search.css("display", "none");
+        $("body").removeClass("in-search")
     },
 
     shouldSearch(searchText) {
