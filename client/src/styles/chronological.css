@@ -10,9 +10,7 @@
     border-bottom: 1px solid black;
     /*line-height: .9;*/
     transition: .5s;
-    /*
-    background: linear-gradient( rgba(176,135,255,0), rgba(255,255,255,0)) !important;
-    */
+    
     z-indeX: 0;
     background: #f2f2f2;
 }
@@ -21,10 +19,6 @@
     font-family: 'Favorit Pro Light';
     font-size: 2.1vw;
     margin-bottom: 8px;
-}
-
-.project-row:hover {
-    background: linear-gradient( rgba(176,135,255,1), rgba(255,255,255,0)) !important;
 }
 
 a.row-link {

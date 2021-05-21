@@ -10,7 +10,7 @@ const MIN_VALUE = -9999999999
 export class SpaceGroup {
     constructor(data, scene, z, renderer) {
         this.z = Number(z)
-        this.SIZE = [35, 20];
+        this.SIZE = [33, 18];
         this.data = data;
         this.renderer = renderer;
         this.scene = scene;

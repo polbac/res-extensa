@@ -114,24 +114,26 @@ export class Base {
                 display: "none",
             })
 
-            $("#section h2").on("mouseenter", () => {
-                $m.css({
-                    display: "block",
-                })
+            if (window.innerWidth > 600) {
+                $("#section h2").on("mouseenter", () => {
+                    $m.css({
+                        display: "block",
+                    })
 
-            })
-            $("#section h2").on("mouseleave", () => {
-                $m.css({
-                    display: "none",
                 })
-            })
-            $(document).on("mousemove", e => {
-                $m.css({
-                    top: e.clientY - $m.height() / 2,
-                    left: e.clientX + 10,
-                    position: 'fixed',
+                $("#section h2").on("mouseleave", () => {
+                    $m.css({
+                        display: "none",
+                    })
                 })
-            })
+                $(document).on("mousemove", e => {
+                    $m.css({
+                        top: e.clientY - $m.height() / 2,
+                        left: e.clientX + 10,
+                        position: 'fixed',
+                    })
+                })
+            }
         }
     }
 

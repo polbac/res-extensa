@@ -4,7 +4,7 @@
 <head>
     <title>RES EXTENSA</title>
     <meta charset="utf-8" />
-    <style>
+   <style>
         /*SCROLLBAR*/
         ::-webkit-scrollbar {
             display: none;
@@ -174,9 +174,60 @@
             padding-top: 2vw;
         }
 
-        .html_download #image-content .post .title {
-            color: #a385fa
+        
+        #sound-content canvas {
+            /*
+            left: 20px !important;
+            width: calc(100vw - 40px);
+            */
         }
+
+        .play-wrapper, #audio {
+            /*max-width: calc(100vw - 40px);*/
+            padding: 0 20px;
+        }
+        
+
+        .html_download #sound-content .col-left {
+            /* position: fixed; */
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: calc(50vw - 20px);
+            height: 100%;
+            padding: 1.4vw 0 0 20px;
+            border-right: 0;
+            overflow-y: scroll;
+        }
+
+        .html_download #sound-content .col-right {
+            /* position: fixed; */
+            top: 0vw;
+            right: 0;
+            margin-left: 0;
+            height: auto;
+            width: 50vw;
+            overflow-y: hidden;
+            border-left: 0;
+        }
+
+        .html_download #sound-content .col-right .epigraph{
+            padding: 0 20px 40px 0;
+            font-size: 12px;
+
+        }
+
+        wave {
+            border-right: 0 !important;
+        }
+
+        
+        
+
+        .html_download .post .title {
+            color: #a385fa;
+        }
+        
 
         .html_download #image-content .post .title:before {
             content: open-quote;
@@ -332,8 +383,8 @@
             display: block;
             text-align: center;
             background: black;
-            height: 100vh;
-            overflow-Y: scroll;
+            height: auto;
+            overflow-y: hidden;
         }
 
         .html_download #video-content .entries-nav a img {
@@ -651,7 +702,7 @@
                     {{tracklist}}
                 </div>
                 <div class="col-right">
-                    <img src="{{images.0.col_id_1}}" width="100%" />
+                    <img src="{{images.0.col_id_1}}" width="60%" />
                     <div class="epigraph">
                         {{images.0.col_id_2}}
                     </div>
